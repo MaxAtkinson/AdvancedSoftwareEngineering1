@@ -5,3 +5,4 @@ Group Members:
 - Max Atkinson
 - Gordon Rennie
 - Andy Nowlan
+- Connor McGuile
