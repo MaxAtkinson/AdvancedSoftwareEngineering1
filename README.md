@@ -5,4 +5,4 @@ Group Members:
 - Max Atkinson
 - Gordon Rennie
 - Andy Nowlan
-- Connor McGuile
+- Connor McGuile (master push access confirmed)
