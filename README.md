@@ -43,3 +43,7 @@ CRC cards (added after lecture on UML)
 State machine
 gantt chart
 
+Work for next time
+Andy - Class Diagram, CRC cards
+Connor - GUI example, State Machine
+Gordon - Use Case Diagram
