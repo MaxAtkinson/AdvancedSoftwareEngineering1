@@ -16,7 +16,8 @@ Gordon was assigned to make CSV files for orders and products.
 Andy and Connor were to begin work on the class diagrams from the group plan. 
 Max was to start working on the idea behind how the gui would look.
 
-Meeting minutes 17/01/19
+## Meeting minutes 17/01/19
+
 CSV files were created. Feedback was to change the Orders file so that rather than a 'name' column the 
 unique ID would be used for whatever product was being bought.
 Connor and Andy both started work on the class diagram and basic user experience for the making of a use case diagram.
@@ -33,18 +34,19 @@ It was also discussed the option of adding inheritance to the products. The idea
 take-away ect. This would help with scalability as new products may have new variables. Difficulties and solutions were 
 discussed.
 
-Group report will contain:
-Class Diagram
-Use case
-Graphical example of the GUI
-Data structure reasoning
-Version Control 
-Time Management Plan
-CRC cards (added after lecture on UML)
-State machine
-gantt chart
+### Group report will contain:
+- Class Diagram
+- Use case
+- Graphical example of the GUI
+- Data structure reasoning
+- Version Control 
+- Time Management Plan
+- CRC cards (added after lecture on UML)
+- State machine
+- Gantt chart
 
-Work for next time
+### Work for next time
 Andy - Class Diagram, CRC cards
 Connor - GUI example, State Machine
 Gordon - Use Case Diagram
+Max - Gantt Chart
