@@ -7,7 +7,8 @@ Group Members:
 - Andy Nowlan
 - Connor McGuile
 
-Meeting minutes 14/01/19
+## Meeting minutes 14/01/19
+
 Agreed to meet once weekly at least. Not including the meeting in the lab sessions. Soft day on Thursday afternoons 2:30 onwards
 Met and introduced ourselves and outlined our knowledge of programming.
 Ran through the basics of git hub with Max. Each member altered the 'readme' and added their name.
