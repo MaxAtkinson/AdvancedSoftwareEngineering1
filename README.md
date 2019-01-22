@@ -46,7 +46,7 @@ discussed.
 - Gantt chart
 
 ### Work for next time
-Andy - Class Diagram, CRC cards
-Connor - GUI example, State Machine
-Gordon - Use Case Diagram
-Max - Gantt Chart
+- Andy - Class Diagram, CRC cards
+- Connor - GUI example, State Machine
+- Gordon - Use Case Diagram
+- Max - Gantt Chart
