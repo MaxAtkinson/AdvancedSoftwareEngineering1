@@ -34,19 +34,38 @@ It was also discussed the option of adding inheritance to the products. The idea
 take-away ect. This would help with scalability as new products may have new variables. Difficulties and solutions were 
 discussed.
 
-### Group report will contain:
+### Development Plan will contain:
 - Class Diagram
 - Use case
 - Graphical example of the GUI
 - Data structure reasoning
-- Version Control 
-- Time Management Plan
-- CRC cards (added after lecture on UML)
-- State machine
 - Gantt chart
+- Sequence Diagram
+- Activity Diagrams
 
 ### Work for next time
-- Andy - Class Diagram, CRC cards
-- Connor - GUI example, State Machine
-- Gordon - Use Case Diagram
-- Max - Gantt Chart
+- Andy - Class Diagram, CRC cards (done)
+- Connor - GUI example, State Machine (done)
+- Gordon - Use Case Diagram (not complete)
+- Max - Gantt Chart (needs modifications)
+
+## Meeting Minutes 24/01/19
+Final changes to the class diagram were agreed. This was settled with Connor's GUI example to decide final methods 
+in the GUI class. Settled on using inheritance for products with two levels to ensure scalability. Product as top level and then food, beverage,
+and memorabilia as secondary. Also decided to add a 'basket' class which represents the shopping trolley. This was done to 
+seperate calculations out of the GUI class. 
+
+Meeting for the following week was pulled forward considering the deadline on Thursday. The group agreed to meet on 
+Tuesday during the usual lab time as well as the Thursday meeting. 
+
+### Splitting code work:
+Connor: Product and inherited classes + Order class
+Gordon: FileManager Class + Exceptions 
+Max: Basket Class
+Andy: GUI Class
+
+
+
+work plan: we each make a branch. Create our class. Someone else pulls it and tests it and then the tester creates the 
+pull request to bring it back into the master.
+ 
