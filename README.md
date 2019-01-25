@@ -59,13 +59,14 @@ Meeting for the following week was pulled forward considering the deadline on Th
 Tuesday during the usual lab time as well as the Thursday meeting. 
 
 ### Splitting code work:
-Connor: Product and inherited classes + Order class
-Gordon: FileManager Class + Exceptions 
-Max: Basket Class
-Andy: GUI Class
+- Connor: Product and inherited classes + Order class
+- Gordon: FileManager Class + Exceptions 
+- Max: Basket Class + discounts
+- Andy: GUI Class
 
-
-
-work plan: we each make a branch. Create our class. Someone else pulls it and tests it and then the tester creates the 
-pull request to bring it back into the master.
+Git workflow:
+- We each make a branch and write our classes
+- Someone else pulls it down and writes some unit tests around the functionality
+- They then create the pull request
+- Upon reviewal, the assigned reviewer merges the pull request into master
  
