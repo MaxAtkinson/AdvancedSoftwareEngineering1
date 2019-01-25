@@ -47,7 +47,7 @@ discussed.
 - Andy - Class Diagram, CRC cards (done)
 - Connor - GUI example, State Machine (done)
 - Gordon - Use Case Diagram (not complete)
-- Max - Gantt Chart (needs modifications)
+- Max - Gantt Chart (done)
 
 ## Meeting Minutes 24/01/19
 Final changes to the class diagram were agreed. This was settled with Connor's GUI example to decide final methods 
