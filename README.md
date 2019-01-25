@@ -64,7 +64,7 @@ Tuesday during the usual lab time as well as the Thursday meeting.
 - Max: Basket Class + discounts
 - Andy: GUI Class
 
-Git workflow:
+### Git workflow:
 - We each make a branch and write our classes
 - Someone else pulls it down and writes some unit tests around the functionality
 - They then create the pull request
