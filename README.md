@@ -72,3 +72,6 @@ Tuesday during the usual lab time as well as the Thursday meeting.
  
 link to sequence diagram:
 https://drive.google.com/file/d/1NemeT9SRTJzqbscYMZrF3kblUC0EFEI5/view?usp=sharing
+
+## Meeting Minutes 31/01/19
+Final meeting pulling everything together and sorting out the overleaf doc. Made some final changes to our diagrams as we thought more about the flow of the program. Report handed in at 16:50 roughly. Decided on Google Java Style Guide for our code style. Off to pub.
