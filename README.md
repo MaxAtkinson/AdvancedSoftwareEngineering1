@@ -70,3 +70,5 @@ Tuesday during the usual lab time as well as the Thursday meeting.
 - They then create the pull request
 - Upon reviewal, the assigned reviewer merges the pull request into master
  
+link to sequence diagram:
+https://drive.google.com/file/d/1NemeT9SRTJzqbscYMZrF3kblUC0EFEI5/view?usp=sharing
