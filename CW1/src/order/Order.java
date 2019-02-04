@@ -1,7 +1,7 @@
 package order;
 
 public class Order {
-	
+
 	private long timestamp;
 	private Product product;
 	private String custID;
@@ -11,6 +11,8 @@ public class Order {
 		this.product = product;
 		this.custID = custID;
 	}
+	
+
 
 	public long getTimestamp() {
 		return timestamp;
