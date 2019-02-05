@@ -75,3 +75,6 @@ https://drive.google.com/file/d/1NemeT9SRTJzqbscYMZrF3kblUC0EFEI5/view?usp=shari
 
 ## Meeting Minutes 31/01/19
 Final meeting pulling everything together and sorting out the overleaf doc. Made some final changes to our diagrams as we thought more about the flow of the program. Report handed in at 16:50 roughly. Decided on Google Java Style Guide for our code style. Off to pub.
+
+###Note on the 05/02/19
+Gordon made a mistake while committing on git by accidentally committing to master brnach rather than his local branch. Mistake was patched by Max.
