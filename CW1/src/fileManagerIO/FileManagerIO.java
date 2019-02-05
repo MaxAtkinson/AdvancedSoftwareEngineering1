@@ -11,7 +11,7 @@ import java.io.FileNotFoundException;
 public class FileManagerIO {
 	ArrayList<Order> currentOrders;
 	ArrayList<Order> existingOrders;
-	ArrayList<Product> productList;
+	TreeSet<Product> products;
 
 //reads each line of a file that's passed to it
 	public void readFromFile(String fileName) 
@@ -30,7 +30,7 @@ public class FileManagerIO {
 	}
 //adds products from file to an array list
 	private void addProduct(Product c) {
-		productList.add(c);
+		products.add(c);
 	}
 //adds orders from file to existing orders list
 	private void addExistingOrder(Order a) {
@@ -54,34 +54,31 @@ public class FileManagerIO {
 //for creating existing orders. Finds Product obejects from product ID
 	private Product findProduct(String productID) {
 		Product thisProduct = null;
-		for (Product a : productList) {
+		for (Product a : products) {
 			if (a.getId() == productID) {
 				thisProduct = a;
 			}
 		}
 		return thisProduct;
 	}
-
 //processes each line of the file.
 	private void processLine(String inputLine) {
 		String part[] = inputLine.split(",");
 		if (isNumber(part[1]) == true) {
 			int timeStamp = Integer.parseInt(part[1]);
-			String customerID = part[2];
-			Product thisProduct = findProduct(part[3]);
-			Order a = new Order(timeStamp, thisProduct, customerID);
+			Product product = findProduct(part[3]);
+			String custID = part[2];
+			Order a = new Order(timeStamp, product, custID);
 			this.addExistingOrder(a);
 		}
 		else {
-			String productName = part[1];
-			String productDescription = part[2];
-			float productPrice = Float.parseFloat(part[3]);
-			String productCategory = part[4];
-			String productID = part[5];
-			Product thisProduct = new Product(productName, productDescription, productPrice, productCategory, productID);
+			String name = part[1];
+			String desc = part[2];
+			float price = Float.parseFloat(part[3]);
+			String cat = part[4];
+			String id = part[5];
+			Product thisProduct = new Product(name, desc, price, cat, id);
 			this.addProduct(thisProduct);
 		}
 	}
-	
-	
 }
