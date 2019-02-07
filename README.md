@@ -75,3 +75,13 @@ https://drive.google.com/file/d/1NemeT9SRTJzqbscYMZrF3kblUC0EFEI5/view?usp=shari
 
 ## Meeting Minutes 31/01/19
 Final meeting pulling everything together and sorting out the overleaf doc. Made some final changes to our diagrams as we thought more about the flow of the program. Report handed in at 16:50 roughly. Decided on Google Java Style Guide for our code style. Off to pub.
+
+## Meeting Minutes 07/02/19
+Reviewed and discussed comments and feedback relating our development plan submission.  Some changes to class diagram are outlined below:
+
+	- addOrder(order:Order): void -  removed (this was included in error)
+	- Will require getters for basket
+	- Write report parameters removed  
+	- Associative line from Order to Product to be included  
+
+We further discussed our current progress and will continue to implement the first iteration as planned (minor alterations may be necessary). We plan to revisit the design upon completion of the first iteration. 
