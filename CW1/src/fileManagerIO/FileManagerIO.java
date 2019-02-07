@@ -129,17 +129,7 @@ public class FileManagerIO {
 		currentOrders.add(o);
 	}
 
-	//checks if a string is a number - used in process line
-	public static boolean isNumber(String c){
-		boolean isNumber = true;
-		try {
-			Integer.parseInt(c);
-		}
-		catch (NumberFormatException e){
-			isNumber = false;
-		}
-		return isNumber;
-	}
+	
 
 	//for creating existing orders. Finds Product objects from product ID
 	private Product findProduct(String productID) {
