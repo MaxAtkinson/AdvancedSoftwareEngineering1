@@ -5,6 +5,7 @@ import java.util.Date;
 
 import order.Order;
 import order.Product;
+import utils.ProductComparator;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -22,18 +23,17 @@ public class FileManagerIO {
 		return firstInstance;
 	}
 	
-	ArrayList<Order> currentOrders;
-	ArrayList<Order> existingOrders;
-	TreeSet<Product> products;
-	private int rows = 0;
+	private ArrayList<Order> currentOrders = new ArrayList<>();
+	private ArrayList<Order> existingOrders = new ArrayList<>();
+	private TreeSet<Product> products = new TreeSet<Product>(new ProductComparator());
 
-	public int getSizeOfCurrentOrder() 
+	public int getSizeOfCurrentOrders() 
 	{
 		int size  = currentOrders.size();
 		return size;
 	}
 
-	public int getSizeOfExistingOrder() 
+	public int getSizeOfExistingOrders() 
 	{
 		int size  = existingOrders.size();
 		return size;
@@ -51,15 +51,20 @@ public class FileManagerIO {
 		File file = new File(fileName);
 		try {
 			Scanner scanner = new Scanner(file);	
+			String inputLine = scanner.nextLine(); // skip headers line
+			// reset products list to prevent repeating info on each file read
+			products = new TreeSet<Product>(new ProductComparator());
 			while (scanner.hasNextLine()) {
-				String inputLine = scanner.nextLine();
+				inputLine = scanner.nextLine();
 				processMenuLine(inputLine);
 			}
+			scanner.close();
 		}
 		catch (FileNotFoundException e) {
 			System.out.print("File: " + fileName + " cannot be found.");
 		}
 	}
+	
 	//processes each line of the Products file.
 	private void processMenuLine(String inputLine) {
 		String part[] = inputLine.split(",");
@@ -68,8 +73,8 @@ public class FileManagerIO {
 		float price = Float.parseFloat(part[2]);
 		String cat = part[3];
 		String id = part[4];
-		Product thisProduct = new Product(name, desc, price, cat, id);
-		this.addProduct(thisProduct);
+		Product p = new Product(name, desc, price, cat, id);
+		products.add(p);
 	}
 
 	//reads each line of a file that's passed to it
@@ -77,83 +82,86 @@ public class FileManagerIO {
 	{
 		File file = new File(fileName);
 		try {
-			Scanner scanner = new Scanner(file);	
+			Scanner scanner = new Scanner(file);
+			String inputLine = scanner.nextLine(); // skip headers line
+			// reset list of orders to prevent repeating info on each file read
+			existingOrders = new ArrayList<>();
 			while (scanner.hasNextLine()) {
-				String inputLine = scanner.nextLine();
+				inputLine = scanner.nextLine();
 				processOrderLine(inputLine);
 			}
+			scanner.close();
 		}
 		catch (FileNotFoundException e) {
 			System.out.print("File: " + fileName + " cannot be found.");
 		}
 	}
+	
 	//processes each line of the Products file.
 	private void processOrderLine(String inputLine) {
 		String part[] = inputLine.split(",");
-		long timeStamp = Integer.parseInt(part[0]);
+		long timeStamp = Long.parseLong(part[0]);
 		Product product = findProduct(part[2]);
 		String custID = part[1];
-		Order a = new Order(timeStamp, product, custID);
-		this.addExistingOrder(a);
-		rows = rows + 1;
+		Order o = new Order(timeStamp, product, custID);
+		existingOrders.add(o);
 
 	}		
 
-	//adds products from file to an array list
-	private void addProduct(Product p) {
-		products.add(p);
-	}
-
-	//adds orders from file to existing orders list
-	private void addExistingOrder(Order o) {
-		existingOrders.add(o);
-	}
-
 	private String createCustomerID() {
+		// TODO handle exception if no existing orders (i.e. no orders in file)
 		Order lastOrder = existingOrders.get(existingOrders.size()-1);
 		String lastCustomerID = lastOrder.getCustID();
-		int lastCustomerNum = Integer.parseInt(lastCustomerID.substring(2));
-		int newCustomerNum = lastCustomerNum + 1;
-		String newCustomerStr = Integer.toString(newCustomerNum);
+		long lastCustomerNum = Long.parseLong(lastCustomerID.substring(3));
+		long newCustomerNum = lastCustomerNum + 1;
+		String newCustomerStr = Long.toString(newCustomerNum);
 		String newCustomerID = "CUS" + newCustomerStr;
 		return newCustomerID;
 	}
 
 	//adds new orders (from the GUI) to current orders
-	public void addCurrentOrder(Product p) throws IOException {
+	public void addCurrentOrder(ArrayList<Product> pList) {
 		Date date = new Date();
 		long timeStamp = date.getTime();
 		String customerID = createCustomerID();
-		Order o = new Order(timeStamp, p, customerID);
-		store(o);
-		currentOrders.add(o);
+		for (Product p : pList) {
+			Order o = new Order(timeStamp, p, customerID);
+			try {
+				store(o);
+				currentOrders.add(o);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
-
-	
 
 	//for creating existing orders. Finds Product objects from product ID
 	private Product findProduct(String productID) {
 		Product thisProduct = null;
 		for (Product a : products) {
-			if (a.getId() == productID) {
-				thisProduct = a;
+			if (a.getId().equals(productID)) {
+				return a;
 			}
 		}
 		return thisProduct;
 	}
+	
 	public void store(Order o) throws IOException {
-		FileWriter writer = new FileWriter("Orders.csv");
+		FileWriter writer = new FileWriter("Orders.csv", true);
 		String timestamp = Long.toString(o.getTimestamp());
 		String customerID = o.getCustID();
 		Product product = o.getProduct();
 		String productID = product.getId();
-		writer.append(timestamp);
-		writer.append(",");
-		writer.append(customerID);
-		writer.append(",");
-		writer.append(productID);
-		writer.append("\n");
+		writer.write(timestamp);
+		writer.write(",");
+		writer.write(customerID);
+		writer.write(",");
+		writer.write(productID);
+		writer.write("\n");
+		writer.close();
 	}
+	
 	private int timesProductWasOrdered(Product p) {
 		int timesOrdered = 0;
 		for(Order o: currentOrders) {
@@ -168,21 +176,24 @@ public class FileManagerIO {
 		}
 		return timesOrdered;
 	}
-	private double totalIncome() {
-		double totalIncome = 0;
+	
+	private float totalIncome() {
+		float totalIncome = 0;
 		for(Order o: currentOrders) {
 			Product p = o.getProduct();
-			double price = p.getPrice();
+			float price = p.getPrice();
 			totalIncome = totalIncome + price;
 		}
 		for(Order o: existingOrders) {
 			Product p = o.getProduct();
-			double price = p.getPrice();
+			String s = p.getCat();
+			float price = p.getPrice();
 			totalIncome = totalIncome + price;
 		}
 		
 		return totalIncome;
 	}
+	
 	public void writeReport(String filename) throws IOException {
 		FileWriter fw = new FileWriter (filename); {
 			fw.write("These are all the products on offer:\n");
