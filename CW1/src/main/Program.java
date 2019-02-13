@@ -2,17 +2,15 @@ package main;
 
 import order.*;
 import fileManagerIO.*;
-import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.ScrollPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Set;
+import java.text.DecimalFormat;
+import java.util.TreeSet;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
@@ -29,12 +27,10 @@ public class Program extends JFrame {
 	static String productsFileName = "Products.csv";
 	static String ordersFileName = "Orders.csv";
 	static FileManagerIO f;
-	Product p;
-	ArrayList<Product> addToBasketArray = new ArrayList<Product>();
-	Product[] arrayListToArray;
+	//ArrayList<Product> basketOrders = new ArrayList<Product>();
 	private static String currentTreeSelection;
 	private static Product curentListSelection;
-	private static Basket currentBasket;
+	private static Basket b;
 
 	// GUI Instance Variables
 	private JButton buttonAdd, buttonRemove, buttonConfirm, buttonQuit, buttonCancel;
@@ -48,7 +44,7 @@ public class Program extends JFrame {
 		f = FileManagerIO.getInstances();
 		f.readFromProductsFile(productsFileName);
 		f.readFromOrderFile(ordersFileName);
-
+		b = new Basket();
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
@@ -228,13 +224,10 @@ public class Program extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				addToBasketArray.clear();
-				Basket y = new Basket(addToBasketArray);
-				total.setText("Total: � " + Math.round((y.calculateTotalPrice()) * 100.00) / 100.00);
-				discount.setText("Discount: � " + Math.round((y.calculateDiscounts()) * 100.00) / 100.00);
-
-				Product[] array = addToBasketArray.toArray(new Product[addToBasketArray.size()]);
-				orderList.setListData(array);
+				b.clearBasket();
+				total.setText("Total: £0.00");
+				discount.setText("Discount: -£0.00");
+				displayBasket();
 
 				JOptionPane.showMessageDialog(null, "Order has been sucessfully cancelled");;
 			}
@@ -244,17 +237,14 @@ public class Program extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (currentBasket.getProducts().size()!=0) {
-					f.addCurrentOrder(currentBasket.getProducts());
+				if (b.getProducts().size()!=0) {
+					f.addCurrentOrder(b.getProducts());
 					JOptionPane.showMessageDialog(null, "Order Confirmed");
-	
-					addToBasketArray.clear();
-					Basket y = new Basket(addToBasketArray);
-					total.setText("Total: � " + Math.round((y.calculateTotalPrice()) * 100.00) / 100.00);
-					discount.setText("Discount: � " + Math.round((y.calculateDiscounts()) * 100.00) / 100.00);
-	
-					Product[] array = addToBasketArray.toArray(new Product[addToBasketArray.size()]);
-					orderList.setListData(array);
+
+					total.setText("Total: £0.00");
+					discount.setText("Discount: -£0.00");
+					b.clearBasket();
+					displayBasket();
 				}
 			}
 		});
@@ -271,18 +261,14 @@ public class Program extends JFrame {
 					return;
 				}
 
-				for (Product p : f.products) {
-
+				for (Product p : f.getProducts()) {
 					if (p.getName().equals(currentTreeSelection)) {
-						addToBasketArray.add(p);
+						b.addProduct(p);
 					}
 				}
-				currentBasket = new Basket(addToBasketArray);
-				total.setText("Total: � " + Math.round((currentBasket.calculateTotalPrice()) * 100.00) / 100.00);
-				discount.setText("Discount: � " + Math.round((currentBasket.calculateDiscounts()) * 100.00) / 100.00);
-
-				Product[] array = addToBasketArray.toArray(new Product[addToBasketArray.size()]);
-				orderList.setListData(array);
+				total.setText("Total: £" + roundTwoDP(b.calculateTotalPrice()));
+				discount.setText("Discount: -£" + roundTwoDP(b.calculateDiscounts()));
+				displayBasket();
 			}
 		});
 		
@@ -296,14 +282,10 @@ public class Program extends JFrame {
 					return;
 				}
 
-				addToBasketArray.remove(curentListSelection);
-				currentBasket = new Basket(addToBasketArray);
-				
-				total.setText("Total: � " + Math.round((currentBasket.calculateTotalPrice()) * 100.00) / 100.00);
-				discount.setText("Discount: � " + Math.round((currentBasket.calculateDiscounts()) * 100.00) / 100.00);
-				
-				Product[] array = addToBasketArray.toArray(new Product[addToBasketArray.size()]);
-				orderList.setListData(array);
+				b.removeProduct(curentListSelection);
+				total.setText("Total: £" + roundTwoDP(b.calculateTotalPrice()));
+				discount.setText("Discount: -£" + roundTwoDP(b.calculateDiscounts()));
+				displayBasket();
 			}
 		});
 		
@@ -324,40 +306,34 @@ public class Program extends JFrame {
 	
 	/**Method for creating JTree Nodes*/
 	private void createNodes(DefaultMutableTreeNode root) {
-		DefaultMutableTreeNode category = null;
-		DefaultMutableTreeNode food = null;
-		DefaultMutableTreeNode drink = null;
-		DefaultMutableTreeNode mem = null;
+		TreeSet<Product> products = f.getProducts();
+		
+		DefaultMutableTreeNode food = new DefaultMutableTreeNode("Food");
+		DefaultMutableTreeNode drink = new DefaultMutableTreeNode("Drink");
+		DefaultMutableTreeNode mem = new DefaultMutableTreeNode("Memoribilia");
+		root.add(food);
+		root.add(drink);
+		root.add(mem);
 
-		category = new DefaultMutableTreeNode("Food");
-		root.add(category);
-
-		for (Product p : f.products) {
+		for (Product p : products) {
+			DefaultMutableTreeNode menuItem = new DefaultMutableTreeNode(p.getName());
 			if (p.getId().contains("FOOD")) {
-				food = new DefaultMutableTreeNode(p.getName());
-				category.add(food);
-			}
-		}
-
-		category = new DefaultMutableTreeNode("Drink");
-		root.add(category);
-
-		for (Product p : f.products) {
-			if (p.getId().contains("BEV")) {
-				drink = new DefaultMutableTreeNode(p.getName());
-				category.add(drink);
-			}
-		}
-
-		category = new DefaultMutableTreeNode("Memorobilia");
-		root.add(category);
-
-		for (Product p : f.products) {
-			if (p.getId().contains("MEM")) {
-				mem = new DefaultMutableTreeNode(p.getName());
-				category.add(mem);
-			}
+				food.add(menuItem);
+			} else if (p.getId().contains("BEV")){
+				drink.add(menuItem);
+			} else if (p.getId().contains("MEM")){
+				mem.add(menuItem);
+			} // no else for readability
 		}
 
 	}
+	
+	private void displayBasket() {
+		Product[] array = b.getProducts().toArray(new Product[b.getProducts().size()]);
+		orderList.setListData(array);
+	}
+	
+	private static float roundTwoDP(float d) { 
+		DecimalFormat twoDForm = new DecimalFormat("#.##"); 
+		return Float.valueOf(twoDForm.format(d)); }
 }
