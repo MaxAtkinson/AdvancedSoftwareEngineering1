@@ -66,6 +66,7 @@ public class FileManagerIOTests {
 		// currentOrders list should increase by num of products ordered
 		// should be appended to orders file - each line being a product
 		f.readFromOrderFile(ordersFileName); // required to fill existingOrders list to create new custIDs
+		int existingSize = f.getSizeOfExistingOrders();
 		lineCount = Files.lines(ordersPath).count()-1;
 		Product p1 = new Product("Irn Bru","A classic scottish staple",(float) 1.99,"Beverage","BEV112");
 		Product p2 = new Product("Irn Bru 32","A not-so-classic scottish staple",(float) 2.99,"Beverage","BEV113");
@@ -73,7 +74,7 @@ public class FileManagerIOTests {
 		ap.add(p1);
 		ap.add(p2);
 		f.addCurrentOrder(ap);
-		assertEquals(ap.size(),f.getSizeOfCurrentOrders());
+		assertEquals(ap.size(),f.getSizeOfExistingOrders()-existingSize);
 		newLineCount = Files.lines(ordersPath).count()-1;
 		assertEquals(lineCount+ap.size(), newLineCount);
 	}

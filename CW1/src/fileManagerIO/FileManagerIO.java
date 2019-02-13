@@ -23,15 +23,8 @@ public class FileManagerIO {
 		return firstInstance;
 	}
 	
-	private ArrayList<Order> currentOrders = new ArrayList<>();
 	private ArrayList<Order> existingOrders = new ArrayList<>();
 	private TreeSet<Product> products = new TreeSet<Product>(new ProductComparator());
-
-	public int getSizeOfCurrentOrders() 
-	{
-		int size  = currentOrders.size();
-		return size;
-	}
 
 	public int getSizeOfExistingOrders() 
 	{
@@ -128,7 +121,7 @@ public class FileManagerIO {
 			Order o = new Order(timeStamp, p, customerID);
 			try {
 				store(o);
-				currentOrders.add(o);
+				existingOrders.add(o);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -148,27 +141,17 @@ public class FileManagerIO {
 	}
 	
 	public void store(Order o) throws IOException {
-		FileWriter writer = new FileWriter("Orders.csv", true);
+		FileWriter fw = new FileWriter("Orders.csv", true);
 		String timestamp = Long.toString(o.getTimestamp());
 		String customerID = o.getCustID();
 		Product product = o.getProduct();
 		String productID = product.getId();
-		writer.write(timestamp);
-		writer.write(",");
-		writer.write(customerID);
-		writer.write(",");
-		writer.write(productID);
-		writer.write("\n");
-		writer.close();
+		fw.write(timestamp + "," + customerID + "," + productID + "\n");
+		fw.close();
 	}
 	
 	private int timesProductWasOrdered(Product p) {
 		int timesOrdered = 0;
-		for(Order o: currentOrders) {
-			if(o.getProduct() == p) {
-				timesOrdered = timesOrdered + 1;
-			}
-		}
 		for(Order o: existingOrders) {
 			if(o.getProduct() == p) {
 				timesOrdered = timesOrdered + 1;
@@ -179,18 +162,11 @@ public class FileManagerIO {
 	
 	private float totalIncome() {
 		float totalIncome = 0;
-		for(Order o: currentOrders) {
-			Product p = o.getProduct();
-			float price = p.getPrice();
-			totalIncome = totalIncome + price;
-		}
 		for(Order o: existingOrders) {
 			Product p = o.getProduct();
-			String s = p.getCat();
 			float price = p.getPrice();
 			totalIncome = totalIncome + price;
 		}
-		
 		return totalIncome;
 	}
 	
