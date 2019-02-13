@@ -224,8 +224,8 @@ public class Program extends JFrame {
 
 				addToBasketArray.clear();
 				Basket y = new Basket(addToBasketArray);
-				total.setText("Total: £ " + Math.round((y.calculateTotalPrice()) * 100.00) / 100.00);
-				discount.setText("Discount: £ " + Math.round((y.calculateDiscounts()) * 100.00) / 100.00);
+				total.setText("Total: ï¿½ " + Math.round((y.calculateTotalPrice()) * 100.00) / 100.00);
+				discount.setText("Discount: ï¿½ " + Math.round((y.calculateDiscounts()) * 100.00) / 100.00);
 
 				Product[] array = addToBasketArray.toArray(new Product[addToBasketArray.size()]);
 				orderList.setListData(array);
@@ -253,19 +253,18 @@ public class Program extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
-				f.addCurrentOrder(currentBasket.getProducts());
-				JOptionPane.showMessageDialog(null, "Order Confirmed");
-
-				addToBasketArray.clear();
-				Basket y = new Basket(addToBasketArray);
-				total.setText("Total: £ " + Math.round((y.calculateTotalPrice()) * 100.00) / 100.00);
-				discount.setText("Discount: £ " + Math.round((y.calculateDiscounts()) * 100.00) / 100.00);
-
-				Product[] array = addToBasketArray.toArray(new Product[addToBasketArray.size()]);
-				orderList.setListData(array);
-
-				return;
+				if (currentBasket.getProducts().size()!=0) {
+					f.addCurrentOrder(currentBasket.getProducts());
+					JOptionPane.showMessageDialog(null, "Order Confirmed");
+	
+					addToBasketArray.clear();
+					Basket y = new Basket(addToBasketArray);
+					total.setText("Total: ï¿½ " + Math.round((y.calculateTotalPrice()) * 100.00) / 100.00);
+					discount.setText("Discount: ï¿½ " + Math.round((y.calculateDiscounts()) * 100.00) / 100.00);
+	
+					Product[] array = addToBasketArray.toArray(new Product[addToBasketArray.size()]);
+					orderList.setListData(array);
+				}
 			}
 		});
 		panelForm.add(buttonConfirm, c);
@@ -305,8 +304,8 @@ public class Program extends JFrame {
 
 				}
 				currentBasket = new Basket(addToBasketArray);
-				total.setText("Total: £ " + Math.round((currentBasket.calculateTotalPrice()) * 100.00) / 100.00);
-				discount.setText("Discount: £ " + Math.round((currentBasket.calculateDiscounts()) * 100.00) / 100.00);
+				total.setText("Total: ï¿½ " + Math.round((currentBasket.calculateTotalPrice()) * 100.00) / 100.00);
+				discount.setText("Discount: ï¿½ " + Math.round((currentBasket.calculateDiscounts()) * 100.00) / 100.00);
 
 				Product[] array = addToBasketArray.toArray(new Product[addToBasketArray.size()]);
 				orderList.setListData(array);
@@ -344,8 +343,8 @@ public class Program extends JFrame {
 				addToBasketArray.remove(curentListSelection);
 				currentBasket = new Basket(addToBasketArray);
 				
-				total.setText("Total: £ " + Math.round((currentBasket.calculateTotalPrice()) * 100.00) / 100.00);
-				discount.setText("Discount: £ " + Math.round((currentBasket.calculateDiscounts()) * 100.00) / 100.00);
+				total.setText("Total: ï¿½ " + Math.round((currentBasket.calculateTotalPrice()) * 100.00) / 100.00);
+				discount.setText("Discount: ï¿½ " + Math.round((currentBasket.calculateDiscounts()) * 100.00) / 100.00);
 				
 				Product[] array = addToBasketArray.toArray(new Product[addToBasketArray.size()]);
 				orderList.setListData(array);
