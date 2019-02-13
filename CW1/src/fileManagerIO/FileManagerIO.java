@@ -24,23 +24,21 @@ public class FileManagerIO {
 	}
 	
 	private ArrayList<Order> existingOrders = new ArrayList<>();
-	public TreeSet<Product> products = new TreeSet<Product>(new ProductComparator());
+	private TreeSet<Product> products = new TreeSet<Product>(new ProductComparator());
 	
-//	
-//    public static void main(String[] args) {
-//
-//	}
 
 	public int getSizeOfExistingOrders() 
 	{
-		int size  = existingOrders.size();
-		return size;
+		return existingOrders.size();
 	}
 
 	public int getNumberOfProducts() 
 	{
-		int size  = products.size();
-		return size;
+		return products.size();
+	}
+	
+	public TreeSet<Product> getProducts() {
+		return products;
 	}
 
 	//reads each line of a file that's passed to it
@@ -71,8 +69,7 @@ public class FileManagerIO {
 		float price = Float.parseFloat(part[2]);
 		String cat = part[3];
 		String id = part[4];
-		Product p = new Product(name, desc, price, cat, id);
-		products.add(p);
+		products.add(new Product(name, desc, price, cat, id));
 	}
 
 	//reads each line of a file that's passed to it
@@ -103,19 +100,18 @@ public class FileManagerIO {
 		String custID = part[1];
 		Order o = new Order(timeStamp, product, custID);
 		existingOrders.add(o);
-
 	}		
 
 	private String createCustomerID() {
-		// TODO handle exception if no existing orders (i.e. no orders in file)
-		
+		if (existingOrders.size()==0) {
+			return "CUS" + 1;
+		}
 		Order lastOrder = existingOrders.get(existingOrders.size()-1);
 		String lastCustomerID = lastOrder.getCustID();
 		long lastCustomerNum = Long.parseLong(lastCustomerID.substring(3));
 		long newCustomerNum = lastCustomerNum + 1;
 		String newCustomerStr = Long.toString(newCustomerNum);
-		String newCustomerID = "CUS" + newCustomerStr;
-		return newCustomerID;
+		return "CUS" + newCustomerStr;
 	}
 
 	//adds new orders (from the GUI) to current orders
@@ -129,7 +125,6 @@ public class FileManagerIO {
 				store(o);
 				existingOrders.add(o);
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -160,7 +155,7 @@ public class FileManagerIO {
 		int timesOrdered = 0;
 		for(Order o: existingOrders) {
 			if(o.getProduct() == p) {
-				timesOrdered = timesOrdered + 1;
+				timesOrdered++;
 			}
 		}
 		return timesOrdered;
@@ -170,6 +165,7 @@ public class FileManagerIO {
 		float totalIncome = 0;
 		for(Order o: existingOrders) {
 			Product p = o.getProduct();
+			totalIncome += p.getPrice();
 		}
 		return totalIncome;
 	}
