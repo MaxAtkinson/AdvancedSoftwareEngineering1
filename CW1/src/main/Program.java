@@ -236,8 +236,7 @@ public class Program extends JFrame {
 				Product[] array = addToBasketArray.toArray(new Product[addToBasketArray.size()]);
 				orderList.setListData(array);
 
-				JOptionPane.showMessageDialog(null, "Order has been sucessfully cancelled");
-				return;
+				JOptionPane.showMessageDialog(null, "Order has been sucessfully cancelled");;
 			}
 		});
 		
@@ -272,14 +271,11 @@ public class Program extends JFrame {
 					return;
 				}
 
-				
 				for (Product p : f.products) {
 
 					if (p.getName().equals(currentTreeSelection)) {
 						addToBasketArray.add(p);
-						
 					}
-
 				}
 				currentBasket = new Basket(addToBasketArray);
 				total.setText("Total: � " + Math.round((currentBasket.calculateTotalPrice()) * 100.00) / 100.00);
@@ -287,9 +283,6 @@ public class Program extends JFrame {
 
 				Product[] array = addToBasketArray.toArray(new Product[addToBasketArray.size()]);
 				orderList.setListData(array);
-
-				
-				return;
 			}
 		});
 		
@@ -311,7 +304,6 @@ public class Program extends JFrame {
 				
 				Product[] array = addToBasketArray.toArray(new Product[addToBasketArray.size()]);
 				orderList.setListData(array);
-				return;
 			}
 		});
 		
@@ -326,7 +318,6 @@ public class Program extends JFrame {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				return;
 			}
 		});
 	}
