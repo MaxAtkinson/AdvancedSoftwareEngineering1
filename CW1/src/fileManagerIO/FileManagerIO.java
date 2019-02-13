@@ -25,7 +25,12 @@ public class FileManagerIO {
 	
 	private ArrayList<Order> currentOrders = new ArrayList<>();
 	private ArrayList<Order> existingOrders = new ArrayList<>();
-	private TreeSet<Product> products = new TreeSet<Product>(new ProductComparator());
+	public TreeSet<Product> products = new TreeSet<Product>(new ProductComparator());
+	
+//	
+//    public static void main(String[] args) {
+//
+//	}
 
 	public int getSizeOfCurrentOrders() 
 	{
@@ -110,6 +115,7 @@ public class FileManagerIO {
 
 	private String createCustomerID() {
 		// TODO handle exception if no existing orders (i.e. no orders in file)
+		
 		Order lastOrder = existingOrders.get(existingOrders.size()-1);
 		String lastCustomerID = lastOrder.getCustID();
 		long lastCustomerNum = Long.parseLong(lastCustomerID.substring(3));
@@ -186,9 +192,9 @@ public class FileManagerIO {
 		}
 		for(Order o: existingOrders) {
 			Product p = o.getProduct();
-			String s = p.getCat();
-			float price = p.getPrice();
-			totalIncome = totalIncome + price;
+//			String s = p.getCat();
+//			float price = p.getPrice();
+//			totalIncome = totalIncome + price;
 		}
 		
 		return totalIncome;

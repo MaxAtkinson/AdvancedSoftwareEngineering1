@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Basket {
 	private ArrayList<Product> products;
 	
+	
 	public Basket(ArrayList<Product> products) {
 		if (products == null) throw new IllegalArgumentException("Products cannot be null.");
 		this.products = products;
