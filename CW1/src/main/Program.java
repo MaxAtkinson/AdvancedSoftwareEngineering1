@@ -43,11 +43,6 @@ public class Program extends JFrame {
 	private JScrollPane menuPane, orderPane;
 	private static JLabel discount, total;
 	
-	
-	
-	
-	
-	
 
 	public static void main(String[] args) {
 		f = FileManagerIO.getInstances();
@@ -62,15 +57,12 @@ public class Program extends JFrame {
 		});
 	}
 
-	
-	
-	
-	
 
 	/** Initialising GUI Defaults */
 	public Program() {
 
 		createView();
+		initBtnActions();
 		setTitle("ASE Coffee Shop");
 		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		setSize(600, 425);
@@ -79,10 +71,6 @@ public class Program extends JFrame {
 	}
 	
 	
-	
-	
-	
-
 	/** GUI Code */
 	private void createView() {
 
@@ -103,11 +91,6 @@ public class Program extends JFrame {
 		 * JScrollPanes ect.
 		 */
 		
-		
-		
-		
-		
-
 		/**JTREE*/
 		DefaultMutableTreeNode root = new DefaultMutableTreeNode("Products");
 		createNodes(root);
@@ -143,10 +126,6 @@ public class Program extends JFrame {
 		panelForm.add(menuPane, c);
 		c.insets = new Insets(0, 0, 0, 0);
 		
-		
-		
-		
-		
 		/**JList*/
 		orderList = new JList<Product>();
 		orderPane = new JScrollPane(orderList);
@@ -176,11 +155,6 @@ public class Program extends JFrame {
 		panelForm.add(orderPane, c);
 		c.insets = new Insets(0, 0, 0, 0);
 
-		
-		
-		
-		
-
 		/**DISCOUNT JLABLE*/
 		discount = new JLabel("Discounts: ");
 		c.gridx = 3;
@@ -190,11 +164,6 @@ public class Program extends JFrame {
 		panelForm.add(discount, c);
 		c.insets = new Insets(0, 0, 0, 0);
 		
-		
-		
-		
-		
-
 		/**TOTAL JLABLE*/
 		total = new JLabel("Total: ");
 		c.gridx = 3;
@@ -204,18 +173,55 @@ public class Program extends JFrame {
 		panelForm.add(total, c);
 		c.insets = new Insets(0, 0, 0, 0);
 		
-		
-		
-		
-		
-
 		/**CANCEL BUTTON*/
 		buttonCancel = new JButton("Cancel Order");
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.anchor = GridBagConstraints.LAST_LINE_START;
 		c.gridx = 0;
 		c.gridy = 9;
+		panelForm.add(buttonCancel, c);
+		c.fill = GridBagConstraints.NONE;
 
+		/**CONFIRM BUTTON*/
+		//format
+		buttonConfirm = new JButton("      Confirm Order      ");
+		c.anchor = GridBagConstraints.LINE_END;
+		c.gridx = 3;
+		c.gridy = 6;
+		panelForm.add(buttonConfirm, c);
+
+		/**REMOVE BUTTON*/
+		//format
+		buttonAdd = new JButton("Add to Order");
+		c.anchor = GridBagConstraints.LINE_START;
+		c.fill = GridBagConstraints.HORIZONTAL;
+		c.gridx = 0;
+		c.gridy = 6;
+		panelForm.add(buttonAdd, c);
+		c.fill = GridBagConstraints.NONE;
+
+		/**REMOVE BUTTON*/
+		//Layout
+		buttonRemove = new JButton("      Remove Item      ");
+		c.gridx = 3;
+		c.gridy = 6;
+		c.anchor = GridBagConstraints.LINE_START;
+		c.insets = new Insets(0, 15, 0, 0);
+		panelForm.add(buttonRemove, c);
+		c.insets = new Insets(0, 0, 0, 0);
+		
+		/**QUIT BUTTON*/
+		//Format
+		buttonQuit = new JButton("   Quit   ");
+		c.gridx = 3;
+		c.gridy = 9;
+		c.insets = new Insets(35, 0, 0, 0);
+		c.anchor = GridBagConstraints.LAST_LINE_END;
+		panelForm.add(buttonQuit, c);
+
+	}
+	
+	private void initBtnActions() {
 		// Following methods executed  when the button is pressed
 		buttonCancel.addActionListener(new ActionListener() {
 
@@ -234,21 +240,7 @@ public class Program extends JFrame {
 				return;
 			}
 		});
-		panelForm.add(buttonCancel, c);
-		c.fill = GridBagConstraints.NONE;
 		
-		
-		
-		
-
-		/**CONFIRM BUTTON*/
-		//format
-		buttonConfirm = new JButton("      Confirm Order      ");
-		c.anchor = GridBagConstraints.LINE_END;
-		c.gridx = 3;
-		c.gridy = 6;
-
-		//  following executed methods when the button is pressed
 		buttonConfirm.addActionListener(new ActionListener() {
 
 			@Override
@@ -267,21 +259,7 @@ public class Program extends JFrame {
 				}
 			}
 		});
-		panelForm.add(buttonConfirm, c);
 		
-		
-		
-		
-		
-		/**REMOVE BUTTON*/
-		//format
-		buttonAdd = new JButton("Add to Order");
-		c.anchor = GridBagConstraints.LINE_START;
-		c.fill = GridBagConstraints.HORIZONTAL;
-		c.gridx = 0;
-		c.gridy = 6;
-
-		//  Following methods executed when the button is pressed
 		buttonAdd.addActionListener(new ActionListener() {
 
 			@Override
@@ -314,22 +292,7 @@ public class Program extends JFrame {
 				return;
 			}
 		});
-
-		panelForm.add(buttonAdd, c);
-		c.fill = GridBagConstraints.NONE;
-
 		
-		
-		
-		/**REMOVE BUTTON*/
-		//Layout
-		buttonRemove = new JButton("      Remove Item      ");
-		c.gridx = 3;
-		c.gridy = 6;
-		c.anchor = GridBagConstraints.LINE_START;
-		c.insets = new Insets(0, 15, 0, 0);
-
-		//Following methods executed when the button is pressed
 		buttonRemove.addActionListener(new ActionListener() {
 
 			@Override
@@ -351,23 +314,7 @@ public class Program extends JFrame {
 				return;
 			}
 		});
-
-		panelForm.add(buttonRemove, c);
-		c.insets = new Insets(0, 0, 0, 0);
 		
-		
-		
-		
-		
-		/**QUIT BUTTON*/
-		//Format
-		buttonQuit = new JButton("   Quit   ");
-		c.gridx = 3;
-		c.gridy = 9;
-		c.insets = new Insets(35, 0, 0, 0);
-		c.anchor = GridBagConstraints.LAST_LINE_END;
-
-		//Following methods executed when the button is pressed
 		buttonQuit.addActionListener(new ActionListener() {
 
 			@Override
@@ -382,15 +329,7 @@ public class Program extends JFrame {
 				return;
 			}
 		});
-		panelForm.add(buttonQuit, c);
-
 	}
-	
-	
-	
-	
-	
-
 	
 	/**Method for creating JTree Nodes*/
 	private void createNodes(DefaultMutableTreeNode root) {
@@ -430,7 +369,4 @@ public class Program extends JFrame {
 		}
 
 	}
-
-
-
 }
