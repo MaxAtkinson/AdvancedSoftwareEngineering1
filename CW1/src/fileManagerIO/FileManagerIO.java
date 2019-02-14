@@ -3,6 +3,9 @@ package fileManagerIO;
 import java.util.*;
 import java.util.Date;
 
+import order.Drink;
+import order.Food;
+import order.Memoribilia;
 import order.Order;
 import order.Product;
 import utils.ProductComparator;
@@ -25,17 +28,20 @@ public class FileManagerIO {
 	
 	private ArrayList<Order> existingOrders = new ArrayList<>();
 	private TreeSet<Product> products = new TreeSet<Product>(new ProductComparator());
+	
 
 	public int getSizeOfExistingOrders() 
 	{
-		int size  = existingOrders.size();
-		return size;
+		return existingOrders.size();
 	}
 
 	public int getNumberOfProducts() 
 	{
-		int size  = products.size();
-		return size;
+		return products.size();
+	}
+	
+	public TreeSet<Product> getProducts() {
+		return products;
 	}
 
 	//reads each line of a file that's passed to it
@@ -61,13 +67,21 @@ public class FileManagerIO {
 	//processes each line of the Products file.
 	private void processMenuLine(String inputLine) {
 		String part[] = inputLine.split(",");
+		String id = part[part.length-1];
 		String name = part[0];
 		String desc = part[1];
 		float price = Float.parseFloat(part[2]);
 		String cat = part[3];
-		String id = part[4];
-		Product p = new Product(name, desc, price, cat, id);
-		products.add(p);
+		if (id.contains("FOOD")) {
+			Food p = new Food(name, desc, price, cat, id);
+			products.add(p);
+		} else if (id.contains("BEV")) {
+			Drink p = new Drink(name, desc, price, cat, id);
+			products.add(p);
+		} else if (id.contains("MEM")) {
+			Memoribilia p = new Memoribilia(name, desc, price, cat, id);
+			products.add(p);
+		} // no else for readability
 	}
 
 	//reads each line of a file that's passed to it
@@ -98,18 +112,18 @@ public class FileManagerIO {
 		String custID = part[1];
 		Order o = new Order(timeStamp, product, custID);
 		existingOrders.add(o);
-
 	}		
 
 	private String createCustomerID() {
-		// TODO handle exception if no existing orders (i.e. no orders in file)
+		if (existingOrders.size()==0) {
+			return "CUS" + 1;
+		}
 		Order lastOrder = existingOrders.get(existingOrders.size()-1);
 		String lastCustomerID = lastOrder.getCustID();
 		long lastCustomerNum = Long.parseLong(lastCustomerID.substring(3));
 		long newCustomerNum = lastCustomerNum + 1;
 		String newCustomerStr = Long.toString(newCustomerNum);
-		String newCustomerID = "CUS" + newCustomerStr;
-		return newCustomerID;
+		return "CUS" + newCustomerStr;
 	}
 
 	//adds new orders (from the GUI) to current orders
@@ -123,7 +137,6 @@ public class FileManagerIO {
 				store(o);
 				existingOrders.add(o);
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -154,7 +167,7 @@ public class FileManagerIO {
 		int timesOrdered = 0;
 		for(Order o: existingOrders) {
 			if(o.getProduct() == p) {
-				timesOrdered = timesOrdered + 1;
+				timesOrdered++;
 			}
 		}
 		return timesOrdered;
@@ -164,8 +177,7 @@ public class FileManagerIO {
 		float totalIncome = 0;
 		for(Order o: existingOrders) {
 			Product p = o.getProduct();
-			float price = p.getPrice();
-			totalIncome = totalIncome + price;
+			totalIncome += p.getPrice();
 		}
 		return totalIncome;
 	}

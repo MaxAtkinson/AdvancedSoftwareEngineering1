@@ -5,16 +5,27 @@ import java.util.ArrayList;
 public class Basket {
 	private ArrayList<Product> products;
 	
-	public Basket(ArrayList<Product> products) {
-		if (products == null) throw new IllegalArgumentException("Products cannot be null.");
-		this.products = products;
+	public Basket() {
+		products = new ArrayList<>();
 	}
 	
 	public ArrayList<Product> getProducts() {
 		return this.products;
 	}
 	
-	public float calculateDiscounts() {
+	public void addProduct(Product p) {
+		this.products.add(p);
+	}
+	
+	public void removeProduct(Product p) {
+		this.products.remove(p);
+	}
+	
+	public void clearBasket() {
+		this.products.clear();
+	}
+	
+	public float calculateDiscountedTotal() {
 		float result = calculateTotalPrice();
 		int countMemoribilia = 0;
 		int countDrinks = 0;
