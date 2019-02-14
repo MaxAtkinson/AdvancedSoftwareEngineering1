@@ -26,21 +26,20 @@ public class Basket {
 	}
 	
 	public float calculateDiscounts() {
-		float total = 0;
+		float result = calculateTotalPrice();
 		int countMemoribilia = 0;
 		int countDrinks = 0;
 		
 		for (Product p: products) {
-			total += p.getPrice();
-			if (p.getId().contains("MEM")) countMemoribilia += 1;
-			else if (p.getId().contains("BEV")) countDrinks += 1;
+			if (p instanceof Memoribilia) countMemoribilia += 1;
+			else if (p instanceof Drink) countDrinks += 1;
 		}
 		
 		if (countMemoribilia >= 2 && countDrinks >= 1) {
-			return (float) (0.2 * total);
+			result -= (0.2 * result);
 		}
 		
-		return 0;
+		return result;
 	}
 	
 	public float calculateTotalPrice() {
@@ -50,6 +49,6 @@ public class Basket {
 			total += p.getPrice();
 		}
 		
-		return total-calculateDiscounts();
+		return total;
 	}
 }
