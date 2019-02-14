@@ -10,27 +10,27 @@ public class Basket {
 	}
 	
 	public ArrayList<Product> getProducts() {
-		return this.products;
+		return products;
 	}
 	
 	public void addProduct(Product p) {
-		this.products.add(p);
+		products.add(p);
 	}
 	
 	public void removeProduct(Product p) {
-		this.products.remove(p);
+		products.remove(p);
 	}
 	
 	public void clearBasket() {
-		this.products.clear();
+		products.clear();
 	}
 	
-	public float calculateDiscountedTotal() {
-		float result = calculateTotalPrice();
+	public static float calculateDiscountedTotal(ArrayList<Product> pList) {
+		float result = calculateTotalPrice(pList);
 		int countMemoribilia = 0;
 		int countDrinks = 0;
 		
-		for (Product p: products) {
+		for (Product p: pList) {
 			if (p instanceof Memoribilia) countMemoribilia += 1;
 			else if (p instanceof Drink) countDrinks += 1;
 		}
@@ -42,10 +42,10 @@ public class Basket {
 		return result;
 	}
 	
-	public float calculateTotalPrice() {
+	public static float calculateTotalPrice(ArrayList<Product> pList) {
 		float total = 0;
 		
-		for (Product p: products) {
+		for (Product p: pList) {
 			total += p.getPrice();
 		}
 		

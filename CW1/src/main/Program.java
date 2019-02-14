@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.TreeSet;
 
 import javax.swing.*;
@@ -325,8 +326,9 @@ public class Program extends JFrame {
 	}
 	
 	private void setDiscountAndTotal() {
-		total.setText("Total: £" + roundTwoDP(b.calculateDiscountedTotal()));
-		discount.setText("Discount: -£" + roundTwoDP(b.calculateTotalPrice()-b.calculateDiscountedTotal()));
+		ArrayList<Product> pl = b.getProducts();
+		total.setText("Total: £" + roundTwoDP(Basket.calculateDiscountedTotal(pl)));
+		discount.setText("Discount: -£" + roundTwoDP(Basket.calculateTotalPrice(pl)-Basket.calculateDiscountedTotal(pl)));
 	}
 	
 	private void displayBasket() {
