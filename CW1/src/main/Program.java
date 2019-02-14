@@ -225,8 +225,7 @@ public class Program extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 
 				b.clearBasket();
-				total.setText("Total: £0.00");
-				discount.setText("Discount: -£0.00");
+				setDiscountAndTotal();
 				displayBasket();
 
 				JOptionPane.showMessageDialog(null, "Order has been sucessfully cancelled");;
@@ -241,8 +240,7 @@ public class Program extends JFrame {
 					f.addCurrentOrder(b.getProducts());
 					JOptionPane.showMessageDialog(null, "Order Confirmed");
 
-					total.setText("Total: £0.00");
-					discount.setText("Discount: -£0.00");
+					setDiscountAndTotal();
 					b.clearBasket();
 					displayBasket();
 				}
@@ -266,8 +264,7 @@ public class Program extends JFrame {
 						b.addProduct(p);
 					}
 				}
-				total.setText("Total: £" + roundTwoDP(b.calculateTotalPrice()));
-				discount.setText("Discount: -£" + roundTwoDP(b.calculateDiscounts()));
+				setDiscountAndTotal();
 				displayBasket();
 			}
 		});
@@ -283,8 +280,7 @@ public class Program extends JFrame {
 				}
 
 				b.removeProduct(curentListSelection);
-				total.setText("Total: £" + roundTwoDP(b.calculateTotalPrice()));
-				discount.setText("Discount: -£" + roundTwoDP(b.calculateDiscounts()));
+				setDiscountAndTotal();
 				displayBasket();
 			}
 		});
@@ -326,6 +322,11 @@ public class Program extends JFrame {
 			} // no else for readability
 		}
 
+	}
+	
+	private void setDiscountAndTotal() {
+		total.setText("Total: £" + roundTwoDP(b.calculateDiscounts()));
+		discount.setText("Discount: -£" + roundTwoDP(b.calculateTotalPrice()-b.calculateDiscounts()));
 	}
 	
 	private void displayBasket() {
