@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.Test;
 
+import exceptions.InvalidProductIdentifierException;
 import order.Basket;
 import order.Drink;
 import order.Food;
@@ -21,13 +22,12 @@ public class BasketTests {
 	}
 
 	@Test
-	public void testCalculateTotalPricePass() {
+	public void testCalculateTotalPricePass() throws InvalidProductIdentifierException {
 		ArrayList<Product> products = new ArrayList<Product>() {{
 			 add(new Food("Test Food 1", "A tasty bit of testing", 2.10f, "", "FOOD123"));
-			 add(new Drink("Test Drink 1", "A tasty bit of testing", 1.10f, "", "DRINK123"));
+			 add(new Drink("Test Drink 1", "A tasty bit of testing", 1.10f, "", "BEV123"));
 			 add(new Memoribilia("Test Memoribilia 1", "A tasty bit of testing", 1.00f, "", "MEM123"));
 		 }};
-		 basket = new Basket();
 		 
 		 assertEquals(4.20f, Basket.calculateTotalPrice(products), 0.00);
 	}
@@ -40,22 +40,22 @@ public class BasketTests {
 	}
 
 	@Test
-	public void testCalculateDiscountsPass() {
+	public void testCalculateDiscountsPass() throws InvalidProductIdentifierException {
 		ArrayList<Product> products = new ArrayList<Product>() {{
 			 add(new Food("Test Food 1", "A tasty bit of testing 1", 2.10f, "", "FOOD123"));
 			 add(new Food("Test Food 2", "A tasty bit of testing 2", 2.10f, "", "FOOD124"));
 			 add(new Food("Test Food 3", "A tasty bit of testing 3", 2.10f, "", "FOOD125"));
-			 add(new Drink("Test Drink 1", "A tasty bit of testing", 1.10f, "", "DRINK123"));
+			 add(new Drink("Test Drink 1", "A tasty bit of testing", 1.10f, "", "BEV123"));
 			 add(new Memoribilia("Test Memoribilia 1", "A tasty bit of testing", 1.00f, "", "MEM123"));
 			 add(new Memoribilia("Test Memoribilia 2", "A tasty bit of testing", 1.00f, "", "MEM124"));
 		}};
-		basket = new Basket();
+	
 		float expected = Basket.calculateTotalPrice(products) * 0.8f;
 		assertEquals(expected, Basket.calculateDiscountedTotal(products), 0.01);
 	}
 	
 	@Test
-	public void testCalculateDiscountsDoesntGiveDiscountWhenLessThanTwoMemAndOneDrinkPass() {
+	public void testCalculateDiscountsDoesntGiveDiscountWhenLessThanTwoMemAndOneDrinkPass() throws InvalidProductIdentifierException {
 		ArrayList<Product> products = new ArrayList<Product>() {{
 			 add(new Food("Test Food 1", "A tasty bit of testing 1", 2.10f, "", "FOOD123"));
 			 add(new Food("Test Food 2", "A tasty bit of testing 2", 2.10f, "", "FOOD124"));
@@ -69,7 +69,7 @@ public class BasketTests {
 	}
 	
 	@Test
-	public void getProductsReturnsCorrectNumberOfProductsPass() {
+	public void getProductsReturnsCorrectNumberOfProductsPass() throws InvalidProductIdentifierException {
 		ArrayList<Product> products = new ArrayList<Product>() {{
 			 add(new Food("Test Food 1", "A tasty bit of testing 1", 2.10f, "", "FOOD123"));
 		}};
@@ -81,7 +81,7 @@ public class BasketTests {
 	}
 	
 	@Test
-	public void clearBasketClearsProductsListPass() {
+	public void clearBasketClearsProductsListPass() throws InvalidProductIdentifierException {
 		ArrayList<Product> products = new ArrayList<Product>() {{
 			 add(new Food("Test Food 1", "A tasty bit of testing 1", 2.10f, "", "FOOD123"));
 		}};
@@ -94,7 +94,7 @@ public class BasketTests {
 	}
 	
 	@Test
-	public void removeProductRemovesProductsFromListPass() {
+	public void removeProductRemovesProductsFromListPass() throws InvalidProductIdentifierException {
 		Product product = new Food("Test Food 1", "A tasty bit of testing 1", 2.10f, "", "FOOD123");
 		ArrayList<Product> products = new ArrayList<Product>() {{
 			 add(product);

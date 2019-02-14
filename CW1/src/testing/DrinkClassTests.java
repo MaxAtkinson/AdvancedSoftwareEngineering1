@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import exceptions.InvalidProductIdentifierException;
 import order.Drink;
 
 public class DrinkClassTests {
@@ -19,8 +20,8 @@ public class DrinkClassTests {
 
 	
 	@Before
-	public void setup(){
-	d = new Drink(name, desc, price,cat,id);
+	public void setup() throws InvalidProductIdentifierException{
+		d = new Drink(name, desc, price,cat,id);
 	}
 	
 	@Test

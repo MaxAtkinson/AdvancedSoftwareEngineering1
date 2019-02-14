@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import exceptions.InvalidProductIdentifierException;
 import order.Memoribilia;
 
 public class MemoribiliaTest {
@@ -19,8 +20,8 @@ private Memoribilia m;
 
 	
 	@Before
-	public void setup(){
-	m = new Memoribilia(name, desc, price,cat,id);
+	public void setup() throws InvalidProductIdentifierException{
+		m = new Memoribilia(name, desc, price,cat,id);
 	}
 	
 	@Test

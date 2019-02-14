@@ -3,6 +3,7 @@ package fileManagerIO;
 import java.util.*;
 import java.util.Date;
 
+import exceptions.InvalidProductIdentifierException;
 import order.Drink;
 import order.Food;
 import order.Memoribilia;
@@ -72,16 +73,20 @@ public class FileManagerIO {
 		String desc = part[1];
 		float price = Float.parseFloat(part[2]);
 		String cat = part[3];
-		if (id.contains("FOOD")) {
-			Food p = new Food(name, desc, price, cat, id);
-			products.add(p);
-		} else if (id.contains("BEV")) {
-			Drink p = new Drink(name, desc, price, cat, id);
-			products.add(p);
-		} else if (id.contains("MEM")) {
-			Memoribilia p = new Memoribilia(name, desc, price, cat, id);
-			products.add(p);
-		} // no else for readability
+		try {
+			if (id.contains("FOOD")) {
+				Food p = new Food(name, desc, price, cat, id);
+				products.add(p);
+			} else if (id.contains("BEV")) {
+				Drink p = new Drink(name, desc, price, cat, id);
+				products.add(p);
+			} else if (id.contains("MEM")) {
+				Memoribilia p = new Memoribilia(name, desc, price, cat, id);
+				products.add(p);
+			}
+		} catch(InvalidProductIdentifierException ex) {
+			ex.printStackTrace();
+		}
 	}
 
 	//reads each line of a file that's passed to it
