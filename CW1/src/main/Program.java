@@ -325,8 +325,8 @@ public class Program extends JFrame {
 	}
 	
 	private void setDiscountAndTotal() {
-		total.setText("Total: £" + roundTwoDP(b.calculateDiscounts()));
-		discount.setText("Discount: -£" + roundTwoDP(b.calculateTotalPrice()-b.calculateDiscounts()));
+		total.setText("Total: £" + roundTwoDP(b.calculateDiscountedTotal()));
+		discount.setText("Discount: -£" + roundTwoDP(b.calculateTotalPrice()-b.calculateDiscountedTotal()));
 	}
 	
 	private void displayBasket() {

@@ -25,7 +25,7 @@ public class Basket {
 		this.products.clear();
 	}
 	
-	public float calculateDiscounts() {
+	public float calculateDiscountedTotal() {
 		float result = calculateTotalPrice();
 		int countMemoribilia = 0;
 		int countDrinks = 0;
