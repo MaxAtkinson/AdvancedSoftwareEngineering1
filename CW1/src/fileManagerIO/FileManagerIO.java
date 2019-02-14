@@ -3,6 +3,7 @@ package fileManagerIO;
 import java.util.*;
 import java.util.Date;
 
+import order.Basket;
 import order.Drink;
 import order.Food;
 import order.Memoribilia;
@@ -175,12 +176,28 @@ public class FileManagerIO {
 	
 	private float totalIncome() {
 		float totalIncome = 0;
-		for(Order o: existingOrders) {
-			Product p = o.getProduct();
-			totalIncome += p.getPrice();
+		ArrayList<Product> oneCustomer = new ArrayList<>();
+		String custID = "";
+		for(int i=0; i < existingOrders.size(); i++) {
+			Order o = existingOrders.get(i);
+			if (o.getCustID().equals(custID)) {
+				oneCustomer.add(o.getProduct());
+				if (i == existingOrders.size()-1) {
+					totalIncome += Basket.calculateDiscountedTotal(oneCustomer);
+				}
+			} else {
+				totalIncome += Basket.calculateDiscountedTotal(oneCustomer);
+				oneCustomer.clear();
+				oneCustomer.add(o.getProduct());
+				custID = o.getCustID();
+				if (i == existingOrders.size()-1) {
+					totalIncome += o.getProduct().getPrice();
+				}
+			}
 		}
 		return totalIncome;
 	}
+	
 	
 	public void writeReport(String filename) throws IOException {
 		FileWriter fw = new FileWriter (filename); {
