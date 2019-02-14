@@ -1,0 +1,31 @@
+These are all the products on offer:
+Coke £1.99 An ice-cold coke. This item was ordered a total of 27 times.
+Irn Bru £1.99 A classic scottish staple. This item was ordered a total of 18 times.
+Sparkling Water £1.99 Wonderful sparking scottish water. This item was ordered a total of 19 times.
+Bottled Water £1.99 Scottish spring water. This item was ordered a total of 7 times.
+Orange Juice £2.99 Fresh pressed orange juice. This item was ordered a total of 7 times.
+Apple Juice £2.99 Fresh pressed apple juice. This item was ordered a total of 29 times.
+Pinapple Juice £2.99 Fresh pressed pinapple juice. This item was ordered a total of 15 times.
+Tea £3.99 Scottish breakfast tea. This item was ordered a total of 4 times.
+Coffee £3.99 Strong italian coffee. This item was ordered a total of 1 times.
+Cottage pie £12.99  Traditional scottish dish with mince filling and mashed potatoe topping. This item was ordered a total of 5 times.
+Chicken and Ham pie £12.99 Chicken and Ham pie with a floating puff pastry top. This item was ordered a total of 11 times.
+Steak pie £10.99 Steak in gravy sauce with encased in a shortcrust pastry. This item was ordered a total of 18 times.
+Fishcakes £10.99 Creamy Salmon fishcakes with a breadcrumb crust. This item was ordered a total of 11 times.
+Stovies £12.99 Winter veg and gravy with beef filling. This item was ordered a total of 18 times.
+Pulled Pork £10.99 Slow cooked pork pulled from the bone. This item was ordered a total of 42 times.
+Macaroni Cheese £10.99 Traditional macaroni chesse with a creamy cheese sauce. This item was ordered a total of 11 times.
+Pork Loin Casserole £10.99 Pork and veg in a thick gravy sauce. This item was ordered a total of 9 times.
+Fish and Chips £12.99 Scottish haddock with thick cut chips. This item was ordered a total of 49 times.
+Loch Ness Monster £4.99 Ceramic Loch Ness monster. This item was ordered a total of 37 times.
+Kilted Doll £4.99 Small Kilted Doll. This item was ordered a total of 1 times.
+Mini Bag Pipes £4.99 Ornamental bag pipes. This item was ordered a total of 2 times.
+Highland Cow Painting £99.99 Painting of Highland Cow by local artist. This item was ordered a total of 20 times.
+Monopoly Scotland Edition £22.99 Traditional game with Scottish place names. This item was ordered a total of 7 times.
+Celtic Rings £14.99 Silver rings twisted in ancient celtic knots. This item was ordered a total of 7 times.
+Nessie Soft Toy £9.99 Soft toy made specially for children. This item was ordered a total of 6 times.
+Scottish Hip Flask £19.99 7oz hip flash with scottish engravings. This item was ordered a total of 5 times.
+Pint Glass £2.99 Local pup's pint glass. This item was ordered a total of 4 times.
+Sgian Dubh £24.99 Scottish knife traditionally worn in a kilt sock. This item was ordered a total of 0 times.
+Sporran £19.99 Small scottish purse worn around the hips with a kilt. This item was ordered a total of 0 times.
+The total income was: 5029.1284
