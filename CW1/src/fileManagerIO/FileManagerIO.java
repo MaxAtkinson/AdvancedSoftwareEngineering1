@@ -3,6 +3,9 @@ package fileManagerIO;
 import java.util.*;
 import java.util.Date;
 
+import order.Drink;
+import order.Food;
+import order.Memoribilia;
 import order.Order;
 import order.Product;
 import utils.ProductComparator;
@@ -64,12 +67,21 @@ public class FileManagerIO {
 	//processes each line of the Products file.
 	private void processMenuLine(String inputLine) {
 		String part[] = inputLine.split(",");
+		String id = part[part.length-1];
 		String name = part[0];
 		String desc = part[1];
 		float price = Float.parseFloat(part[2]);
 		String cat = part[3];
-		String id = part[4];
-		products.add(new Product(name, desc, price, cat, id));
+		if (id.contains("FOOD")) {
+			Food p = new Food(name, desc, price, cat, id);
+			products.add(p);
+		} else if (id.contains("BEV")) {
+			Drink p = new Drink(name, desc, price, cat, id);
+			products.add(p);
+		} else if (id.contains("MEM")) {
+			Memoribilia p = new Memoribilia(name, desc, price, cat, id);
+			products.add(p);
+		} // no else for readability
 	}
 
 	//reads each line of a file that's passed to it
