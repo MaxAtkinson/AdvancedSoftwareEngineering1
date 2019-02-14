@@ -17,7 +17,7 @@ public class ProductClassTests {
 
 	@Before
 	public void setup(){
-	p = new Product(name, desc, price,cat,id);
+	p = new Product(name, desc, price,id);
 	}
 	
 	@Test
@@ -42,13 +42,6 @@ public class ProductClassTests {
 		
 	}
 
-	
-	@Test
-	public void getCatPass() {
-		
-		assertEquals(cat,p.getCat());
-	};
-	
 	@Test
 	public void getIdPass() {
 		

@@ -20,7 +20,7 @@ private Memoribilia m;
 	
 	@Before
 	public void setup(){
-	m = new Memoribilia(name, desc, price,cat,id);
+	m = new Memoribilia(name, desc, price,id);
 	}
 	
 	@Test
@@ -45,13 +45,6 @@ private Memoribilia m;
 		
 	}
 
-	
-	@Test
-	public void getCatPass() {
-		
-		assertEquals(cat,m.getCat());
-	};
-	
 	@Test
 	public void getIdPass() {
 		

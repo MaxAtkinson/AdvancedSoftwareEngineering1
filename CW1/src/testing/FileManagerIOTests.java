@@ -54,7 +54,7 @@ public class FileManagerIOTests {
 	@Test
 	public void testStore() throws IOException {
 		// test for basket of items written to orders file
-		Order o = new Order((long) 1, new Product("Irn Bru","A classic scottish staple",(float) 1.99,"Beverage","BEV112"), "CUS127");
+		Order o = new Order((long) 1, new Product("Irn Bru","A classic scottish staple",(float) 1.99,"BEV112"), "CUS127");
 		lineCount = Files.lines(ordersPath).count()-1;
 		f.store(o);
 		newLineCount = Files.lines(ordersPath).count()-1;
@@ -68,8 +68,8 @@ public class FileManagerIOTests {
 		f.readFromOrderFile(ordersFileName); // required to fill existingOrders list to create new custIDs
 		int existingSize = f.getSizeOfExistingOrders();
 		lineCount = Files.lines(ordersPath).count()-1;
-		Product p1 = new Product("Irn Bru","A classic scottish staple",(float) 1.99,"Beverage","BEV112");
-		Product p2 = new Product("Irn Bru 32","A not-so-classic scottish staple",(float) 2.99,"Beverage","BEV113");
+		Product p1 = new Product("Irn Bru","A classic scottish staple",(float) 1.99,"BEV112");
+		Product p2 = new Product("Irn Bru 32","A not-so-classic scottish staple",(float) 2.99,"BEV113");
 		ArrayList<Product> ap = new ArrayList<>();
 		ap.add(p1);
 		ap.add(p2);

@@ -23,9 +23,9 @@ public class BasketTests {
 	@Test
 	public void testCalculateTotalPricePass() {
 		ArrayList<Product> products = new ArrayList<Product>() {{
-			 add(new Food("Test Food 1", "A tasty bit of testing", 2.10f, "", "FOOD123"));
-			 add(new Drink("Test Drink 1", "A tasty bit of testing", 1.10f, "", "DRINK123"));
-			 add(new Memoribilia("Test Memoribilia 1", "A tasty bit of testing", 1.00f, "", "MEM123"));
+			 add(new Food("Test Food 1", "A tasty bit of testing", 2.10f, "FOOD123"));
+			 add(new Drink("Test Drink 1", "A tasty bit of testing", 1.10f, "DRINK123"));
+			 add(new Memoribilia("Test Memoribilia 1", "A tasty bit of testing", 1.00f, "MEM123"));
 		 }};
 		 basket = new Basket();
 		 
@@ -42,12 +42,12 @@ public class BasketTests {
 	@Test
 	public void testCalculateDiscountsPass() {
 		ArrayList<Product> products = new ArrayList<Product>() {{
-			 add(new Food("Test Food 1", "A tasty bit of testing 1", 2.10f, "", "FOOD123"));
-			 add(new Food("Test Food 2", "A tasty bit of testing 2", 2.10f, "", "FOOD124"));
-			 add(new Food("Test Food 3", "A tasty bit of testing 3", 2.10f, "", "FOOD125"));
-			 add(new Drink("Test Drink 1", "A tasty bit of testing", 1.10f, "", "DRINK123"));
-			 add(new Memoribilia("Test Memoribilia 1", "A tasty bit of testing", 1.00f, "", "MEM123"));
-			 add(new Memoribilia("Test Memoribilia 2", "A tasty bit of testing", 1.00f, "", "MEM124"));
+			 add(new Food("Test Food 1", "A tasty bit of testing 1", 2.10f, "FOOD123"));
+			 add(new Food("Test Food 2", "A tasty bit of testing 2", 2.10f, "FOOD124"));
+			 add(new Food("Test Food 3", "A tasty bit of testing 3", 2.10f, "FOOD125"));
+			 add(new Drink("Test Drink 1", "A tasty bit of testing", 1.10f, "DRINK123"));
+			 add(new Memoribilia("Test Memoribilia 1", "A tasty bit of testing", 1.00f, "MEM123"));
+			 add(new Memoribilia("Test Memoribilia 2", "A tasty bit of testing", 1.00f, "MEM124"));
 		}};
 		basket = new Basket();
 		float expected = Basket.calculateTotalPrice(products) * 0.8f;
@@ -57,10 +57,10 @@ public class BasketTests {
 	@Test
 	public void testCalculateDiscountsDoesntGiveDiscountWhenLessThanTwoMemAndOneDrinkPass() {
 		ArrayList<Product> products = new ArrayList<Product>() {{
-			 add(new Food("Test Food 1", "A tasty bit of testing 1", 2.10f, "", "FOOD123"));
-			 add(new Food("Test Food 2", "A tasty bit of testing 2", 2.10f, "", "FOOD124"));
-			 add(new Food("Test Food 3", "A tasty bit of testing 3", 2.10f, "", "FOOD125"));
-			 add(new Memoribilia("Test Memoribilia 1", "A tasty bit of testing", 1.00f, "", "MEM123"));
+			 add(new Food("Test Food 1", "A tasty bit of testing 1", 2.10f, "FOOD123"));
+			 add(new Food("Test Food 2", "A tasty bit of testing 2", 2.10f, "FOOD124"));
+			 add(new Food("Test Food 3", "A tasty bit of testing 3", 2.10f, "FOOD125"));
+			 add(new Memoribilia("Test Memoribilia 1", "A tasty bit of testing", 1.00f, "MEM123"));
 		}};
 		basket = new Basket();
 
@@ -71,7 +71,7 @@ public class BasketTests {
 	@Test
 	public void getProductsReturnsCorrectNumberOfProductsPass() {
 		ArrayList<Product> products = new ArrayList<Product>() {{
-			 add(new Food("Test Food 1", "A tasty bit of testing 1", 2.10f, "", "FOOD123"));
+			 add(new Food("Test Food 1", "A tasty bit of testing 1", 2.10f, "FOOD123"));
 		}};
 		basket = new Basket();
 	    for (Product p: products) {
@@ -83,7 +83,7 @@ public class BasketTests {
 	@Test
 	public void clearBasketClearsProductsListPass() {
 		ArrayList<Product> products = new ArrayList<Product>() {{
-			 add(new Food("Test Food 1", "A tasty bit of testing 1", 2.10f, "", "FOOD123"));
+			 add(new Food("Test Food 1", "A tasty bit of testing 1", 2.10f, "FOOD123"));
 		}};
 		basket = new Basket();
 	    for (Product p: products) {
@@ -95,7 +95,7 @@ public class BasketTests {
 	
 	@Test
 	public void removeProductRemovesProductsFromListPass() {
-		Product product = new Food("Test Food 1", "A tasty bit of testing 1", 2.10f, "", "FOOD123");
+		Product product = new Food("Test Food 1", "A tasty bit of testing 1", 2.10f, "FOOD123");
 		ArrayList<Product> products = new ArrayList<Product>() {{
 			 add(product);
 		}};

@@ -9,7 +9,6 @@ import order.Food;
 import order.Memoribilia;
 import order.Order;
 import order.Product;
-import utils.ProductComparator;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -28,7 +27,7 @@ public class FileManagerIO {
 	}
 	
 	private ArrayList<Order> existingOrders = new ArrayList<>();
-	private TreeSet<Product> products = new TreeSet<Product>(new ProductComparator());
+	private Set<Product> products = new HashSet<Product>();
 	
 
 	public int getSizeOfExistingOrders() 
@@ -41,7 +40,7 @@ public class FileManagerIO {
 		return products.size();
 	}
 	
-	public TreeSet<Product> getProducts() {
+	public Set<Product> getProducts() {
 		return products;
 	}
 
@@ -53,7 +52,7 @@ public class FileManagerIO {
 			Scanner scanner = new Scanner(file);	
 			String inputLine = scanner.nextLine(); // skip headers line
 			// reset products list to prevent repeating info on each file read
-			products = new TreeSet<Product>(new ProductComparator());
+			products = new HashSet<Product>();
 			while (scanner.hasNextLine()) {
 				inputLine = scanner.nextLine();
 				processMenuLine(inputLine);
@@ -73,14 +72,14 @@ public class FileManagerIO {
 		String desc = part[1];
 		float price = Float.parseFloat(part[2]);
 		String cat = part[3];
-		if (id.contains("FOOD")) {
-			Food p = new Food(name, desc, price, cat, id);
+		if (cat.contentEquals("Food")) {
+			Food p = new Food(name, desc, price, id);
 			products.add(p);
-		} else if (id.contains("BEV")) {
-			Drink p = new Drink(name, desc, price, cat, id);
+		} else if (cat.contentEquals("Beverage")) {
+			Drink p = new Drink(name, desc, price, id);
 			products.add(p);
-		} else if (id.contains("MEM")) {
-			Memoribilia p = new Memoribilia(name, desc, price, cat, id);
+		} else if (cat.contentEquals("Memorabilia")) {
+			Memoribilia p = new Memoribilia(name, desc, price, id);
 			products.add(p);
 		} // no else for readability
 	}
