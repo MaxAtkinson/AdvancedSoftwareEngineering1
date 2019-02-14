@@ -20,13 +20,14 @@ public class Product {
 	public String getName() {
 		return name;
 	}
+	
 
 	public String getDesc() {
 		return desc;
 	}
 
 
-	public double getPrice() {
+	public float getPrice() {
 		return price;
 	}
 
@@ -43,4 +44,12 @@ public class Product {
 	public String getMenuDisplay() {
 		return name + " £" + price;	
 	}
+	
+	//added in for GUI
+	public String toString() { 
+	    return String.format("%s", name);
+	    		
+	} 
+	
+	
 }
