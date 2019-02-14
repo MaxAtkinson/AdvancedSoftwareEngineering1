@@ -89,3 +89,17 @@ Reviewed and discussed comments and feedback relating our development plan submi
 
 We further discussed our current progress and will continue to implement the first iteration as planned (minor alterations may be necessary). We plan to revisit the design upon completion of the first iteration. 
 
+## Meeting Minutes 14/02/19
+-	Divided and assigned report writing duties.
+-	Created Report Document Template
+-	Decided on second iteration alterations to code:
+
+	•	Implement basket static method taking array list and amend write report in fileManager
+	•	remove comparator class
+	•	change file manager products to set, not tree set (order not important)
+	•	change FM processMenu to cat.equals, not p.getId
+	•	redo basket tests 
+	•	remove cat from Products, Food, Drink, Mem constructors and relevant getters
+	•	Exception handling in subclasses
+
+-	Scheduled earlier meeting for Monday next week. 
