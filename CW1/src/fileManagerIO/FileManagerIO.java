@@ -3,7 +3,6 @@ package fileManagerIO;
 import java.util.*;
 import java.util.Date;
 
-import CustomExceptions.InvalidCategoryException;
 import order.Basket;
 import order.Drink;
 import order.Food;
@@ -46,7 +45,7 @@ public class FileManagerIO {
 	}
 
 	//reads each line of a file that's passed to it
-	public void readFromProductsFile(String fileName) throws InvalidCategoryException 
+	public void readFromProductsFile(String fileName)
 	{
 		File file = new File(fileName);
 		try {
@@ -66,14 +65,13 @@ public class FileManagerIO {
 	}
 	
 	//processes each line of the Products file.
-	private void processMenuLine(String inputLine) throws NullPointerException, InvalidCategoryException {
+	private void processMenuLine(String inputLine) {
 		String part[] = inputLine.split(",");
 		String id = part[part.length-1];
 		String name = part[0];
 		String desc = part[1];
 		float price = Float.parseFloat(part[2]);
 		String cat = part[3];
-		try {
 		if (cat.contentEquals("Food")) {
 			Food p = new Food(name, desc, price, id);
 			products.add(p);
@@ -83,13 +81,9 @@ public class FileManagerIO {
 		} else if (cat.contentEquals("Memorabilia")) {
 			Memoribilia p = new Memoribilia(name, desc, price, id);
 			products.add(p);
-		} // no else for readability
+			// no else for readability
 		}
-		catch (NullPointerException e) {
-			throw new InvalidCategoryException("This product is invalid.");
-		
 		}
-	}
 	//reads each line of a file that's passed to it
 	public void readFromOrderFile(String fileName) 
 	{

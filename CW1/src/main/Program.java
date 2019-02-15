@@ -21,7 +21,6 @@ import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreeSelectionModel;
 
-import CustomExceptions.InvalidCategoryException;
 
 public class Program extends JFrame {
 
@@ -42,7 +41,7 @@ public class Program extends JFrame {
 	private static JLabel discount, total;
 	
 
-	public static void main(String[] args) throws InvalidCategoryException {
+	public static void main(String[] args) {
 		f = FileManagerIO.getInstances();
 		f.readFromProductsFile(productsFileName);
 		f.readFromOrderFile(ordersFileName);
