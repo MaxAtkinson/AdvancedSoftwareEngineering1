@@ -25,10 +25,10 @@ public class FileManagerIO {
 		}
 		return firstInstance;
 	}
-	
+
 	private ArrayList<Order> existingOrders = new ArrayList<>();
 	private Set<Product> products = new HashSet<Product>();
-	
+
 
 	public int getSizeOfExistingOrders() 
 	{
@@ -39,7 +39,7 @@ public class FileManagerIO {
 	{
 		return products.size();
 	}
-	
+
 	public Set<Product> getProducts() {
 		return products;
 	}
@@ -63,27 +63,31 @@ public class FileManagerIO {
 			System.out.print("File: " + fileName + " cannot be found.");
 		}
 	}
-	
+
 	//processes each line of the Products file.
 	private void processMenuLine(String inputLine) {
-		String part[] = inputLine.split(",");
-		String id = part[part.length-1];
-		String name = part[0];
-		String desc = part[1];
-		float price = Float.parseFloat(part[2]);
-		String cat = part[3];
-		if (cat.contentEquals("Food")) {
-			Food p = new Food(name, desc, price, id);
-			products.add(p);
-		} else if (cat.contentEquals("Beverage")) {
-			Drink p = new Drink(name, desc, price, id);
-			products.add(p);
-		} else if (cat.contentEquals("Memorabilia")) {
-			Memoribilia p = new Memoribilia(name, desc, price, id);
-			products.add(p);
-			// no else for readability
+		try {
+			String part[] = inputLine.split(",");
+			String id = part[part.length-1];
+			String name = part[0];
+			String desc = part[1];
+			float price = Float.parseFloat(part[2]);
+			String cat = part[3];
+			if (cat.contentEquals("Food")) {
+				Food p = new Food(name, desc, price, id);
+				products.add(p);
+			} else if (cat.contentEquals("Beverage")) {
+				Drink p = new Drink(name, desc, price, id);
+				products.add(p);
+			} else if (cat.contentEquals("Memorabilia")) {
+				Memoribilia p = new Memoribilia(name, desc, price, id);
+				products.add(p);
+				// no else for readability
+			}
+		}catch(NumberFormatException ex) {
+			ex.printStackTrace();
 		}
-		}
+	}
 	//reads each line of a file that's passed to it
 	public void readFromOrderFile(String fileName) 
 	{
@@ -103,16 +107,20 @@ public class FileManagerIO {
 			System.out.print("File: " + fileName + " cannot be found.");
 		}
 	}
-	
+
 	//processes each line of the Products file.
 	private void processOrderLine(String inputLine) {
-		String part[] = inputLine.split(",");
-		long timeStamp = Long.parseLong(part[0]);
-		Product product = findProduct(part[2]);
-		String custID = part[1];
-		Order o = new Order(timeStamp, product, custID);
-		existingOrders.add(o);
-	}		
+		try {
+			String part[] = inputLine.split(",");
+			long timeStamp = Long.parseLong(part[0]);
+			Product product = findProduct(part[2]);
+			String custID = part[1];
+			Order o = new Order(timeStamp, product, custID);
+			existingOrders.add(o);
+		}catch(NumberFormatException ex) {
+			ex.printStackTrace();
+		}
+	}
 
 	private String createCustomerID() {
 		if (existingOrders.size()==0) {
@@ -152,7 +160,7 @@ public class FileManagerIO {
 		}
 		return thisProduct;
 	}
-	
+
 	public void store(Order o) throws IOException {
 		FileWriter fw = new FileWriter("Orders.csv", true);
 		String timestamp = Long.toString(o.getTimestamp());
@@ -162,7 +170,7 @@ public class FileManagerIO {
 		fw.write(timestamp + "," + customerID + "," + productID + "\n");
 		fw.close();
 	}
-	
+
 	private int timesProductWasOrdered(Product p) {
 		int timesOrdered = 0;
 		for(Order o: existingOrders) {
@@ -172,7 +180,7 @@ public class FileManagerIO {
 		}
 		return timesOrdered;
 	}
-	
+
 	private float totalIncome() {
 		float totalIncome = 0;
 		ArrayList<Product> oneCustomer = new ArrayList<>();
@@ -196,8 +204,8 @@ public class FileManagerIO {
 		}
 		return totalIncome;
 	}
-	
-	
+
+
 	public void writeReport(String filename) throws IOException {
 		FileWriter fw = new FileWriter (filename); {
 			fw.write("These are all the products on offer:\n");
