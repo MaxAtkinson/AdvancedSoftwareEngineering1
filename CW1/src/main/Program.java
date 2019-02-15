@@ -11,8 +11,7 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.TreeSet;
-
+import java.util.Set;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.ListSelectionEvent;
@@ -22,6 +21,7 @@ import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreeSelectionModel;
 
+
 public class Program extends JFrame {
 
 	//Instance Variables
@@ -29,7 +29,7 @@ public class Program extends JFrame {
 	static String ordersFileName = "Orders.csv";
 	static FileManagerIO f;
 	//ArrayList<Product> basketOrders = new ArrayList<Product>();
-	private static String currentTreeSelection;
+	private static String currentSetSelection;
 	private static Product curentListSelection;
 	private static Basket b;
 
@@ -107,7 +107,7 @@ public class Program extends JFrame {
 					return;
 				
 				/* retrieve the node that was selected and store string in static varable */
-				currentTreeSelection = menuTree.getLastSelectedPathComponent().toString();
+				currentSetSelection = menuTree.getLastSelectedPathComponent().toString();
 			}
 		});
 
@@ -254,14 +254,14 @@ public class Program extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				//If leaf node not selected, display message and return
-				if (currentTreeSelection.contains("Products") || currentTreeSelection.contains("Food") || currentTreeSelection.contains("Drink")
-						|| currentTreeSelection.contains("Memorobilia")) {
+				if (currentSetSelection.contains("Products") || currentSetSelection.contains("Food") || currentSetSelection.contains("Drink")
+						|| currentSetSelection.contains("Memorobilia")) {
 					JOptionPane.showMessageDialog(null, "Please select a product to add to the basket");
 					return;
 				}
 
 				for (Product p : f.getProducts()) {
-					if (p.getName().equals(currentTreeSelection)) {
+					if (p.getName().equals(currentSetSelection)) {
 						b.addProduct(p);
 					}
 				}
@@ -289,7 +289,7 @@ public class Program extends JFrame {
 		buttonQuit.addActionListener(new ActionListener() {
 
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e) throws NullPointerException {
 				try {
 					f.writeReport("Report.txt");
 					System.exit(0);
@@ -297,13 +297,14 @@ public class Program extends JFrame {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
+
 			}
 		});
 	}
 	
 	/**Method for creating JTree Nodes*/
 	private void createNodes(DefaultMutableTreeNode root) {
-		TreeSet<Product> products = f.getProducts();
+		Set<Product> products = f.getProducts();
 		
 		DefaultMutableTreeNode food = new DefaultMutableTreeNode("Food");
 		DefaultMutableTreeNode drink = new DefaultMutableTreeNode("Drink");

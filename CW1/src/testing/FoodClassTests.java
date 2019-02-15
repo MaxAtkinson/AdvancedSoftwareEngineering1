@@ -20,7 +20,7 @@ public class FoodClassTests {
 	
 	@Before
 	public void setup(){
-	f = new Food(name, desc, price,cat,id);
+	f = new Food(name, desc, price,id);
 	}
 	
 	@Test
@@ -45,12 +45,6 @@ public class FoodClassTests {
 		
 	}
 
-	
-	@Test
-	public void getCatPass() {
-		
-		assertEquals(cat,f.getCat());
-	};
 	
 	@Test
 	public void getIdPass() {

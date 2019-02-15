@@ -20,7 +20,7 @@ public class DrinkClassTests {
 	
 	@Before
 	public void setup(){
-	d = new Drink(name, desc, price,cat,id);
+	d = new Drink(name, desc, price,id);
 	}
 	
 	@Test
@@ -44,13 +44,6 @@ public class DrinkClassTests {
 		assertEquals(price, d.getPrice(),0.01);
 		
 	}
-
-	
-	@Test
-	public void getCatPass() {
-		
-		assertEquals(cat,d.getCat());
-	};
 	
 	@Test
 	public void getIdPass() {
