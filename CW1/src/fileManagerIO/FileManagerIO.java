@@ -75,7 +75,7 @@ public class FileManagerIO {
 		if (cat.contentEquals("Food")) {
 			Food p = new Food(name, desc, price, id);
 			products.add(p);
-		} else if (cat.contentEquals("Beerage")) {
+		} else if (cat.contentEquals("Beverage")) {
 			Drink p = new Drink(name, desc, price, id);
 			products.add(p);
 		} else if (cat.contentEquals("Memorabilia")) {
