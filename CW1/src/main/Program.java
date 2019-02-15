@@ -12,7 +12,6 @@ import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Set;
-
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.ListSelectionEvent;
@@ -21,6 +20,8 @@ import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreeSelectionModel;
+
+import CustomExceptions.InvalidCategoryException;
 
 public class Program extends JFrame {
 
@@ -41,7 +42,7 @@ public class Program extends JFrame {
 	private static JLabel discount, total;
 	
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InvalidCategoryException {
 		f = FileManagerIO.getInstances();
 		f.readFromProductsFile(productsFileName);
 		f.readFromOrderFile(ordersFileName);
@@ -289,7 +290,7 @@ public class Program extends JFrame {
 		buttonQuit.addActionListener(new ActionListener() {
 
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e) throws NullPointerException {
 				try {
 					f.writeReport("Report.txt");
 					System.exit(0);
@@ -297,6 +298,7 @@ public class Program extends JFrame {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
+
 			}
 		});
 	}

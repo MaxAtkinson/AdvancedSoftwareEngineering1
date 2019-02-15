@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.Test;
 
+import CustomExceptions.InvalidCategoryException;
 import fileManagerIO.FileManagerIO;
 import order.Order;
 import order.Product;
@@ -38,7 +39,7 @@ public class FileManagerIOTests {
 	}
 	
 	@Test
-	public void testMenuSize() throws IOException {
+	public void testMenuSize() throws IOException, InvalidCategoryException {
 		lineCount = Files.lines(menuPath).count()-1; //subtract for headers
 		f.readFromProductsFile(productsFileName);
 		assertEquals(lineCount, f.getNumberOfProducts());
@@ -80,7 +81,7 @@ public class FileManagerIOTests {
 	}
 	
 	@Test
-	public void testWriteReport() throws IOException {
+	public void testWriteReport() throws IOException, InvalidCategoryException {
 		// check to see if report exists
 		// products list must be initialised to iterate through
 		// and of course orders lists needs to exist to have a report
