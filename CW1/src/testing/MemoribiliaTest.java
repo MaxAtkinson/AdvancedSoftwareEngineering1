@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import exceptions.InvalidProductIdentifierException;
+import order.Food;
 import order.Memoribilia;
 
 public class MemoribiliaTest {
@@ -65,5 +66,12 @@ private Memoribilia m;
 		assertEquals(x, m.getMenuDisplay());
 		
 	}
+	
+	@Test(expected = InvalidProductIdentifierException.class)
+	public void throwsExceptionPass() throws InvalidProductIdentifierException {
+		Memoribilia exceptionFood = new Memoribilia("An exceptional piece of memoribilia", "An exception Description", (float) 0.99, "Memoribilia", "DEV111");
+		
+	}
+
 
 }

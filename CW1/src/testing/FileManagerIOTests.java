@@ -12,7 +12,9 @@ import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.Test;
 
+import exceptions.InvalidProductIdentifierException;
 import fileManagerIO.FileManagerIO;
+import order.Drink;
 import order.Order;
 import order.Product;
 
@@ -91,5 +93,6 @@ public class FileManagerIOTests {
 		File f = new File(reportFileName);
 		assertEquals(true,f.exists());
 	}
+	
 
 }

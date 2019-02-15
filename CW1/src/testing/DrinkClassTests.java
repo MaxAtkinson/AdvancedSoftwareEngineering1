@@ -65,5 +65,9 @@ public class DrinkClassTests {
 		assertEquals(x, d.getMenuDisplay());
 		
 	}
-
+	
+	@Test(expected = InvalidProductIdentifierException.class)
+	public void throwsExceptionPass() throws InvalidProductIdentifierException {
+		Drink exceptionDrink = new Drink("An exceptional Drink", "An exception Description", (float) 0.99, "Beverage", "DEV111");
+	}
 }

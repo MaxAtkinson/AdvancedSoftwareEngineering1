@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import exceptions.InvalidProductIdentifierException;
+import order.Drink;
 import order.Food;
 
 public class FoodClassTests {
@@ -63,6 +64,12 @@ public class FoodClassTests {
 	public void getMenuDisplayPass(){
 		String x = name + " £" + price;
 		assertEquals(x, f.getMenuDisplay());
+		
+	}
+	
+	@Test(expected = InvalidProductIdentifierException.class)
+	public void throwsExceptionPass() throws InvalidProductIdentifierException {
+		Food exceptionFood = new Food("An exceptional Food", "An exception Description", (float) 0.99, "Food", "DEV111");
 		
 	}
 
