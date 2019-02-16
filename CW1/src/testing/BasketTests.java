@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.Test;
 
+import customExceptions.InvalidProductPriceException;
 import order.Basket;
 import order.Drink;
 import order.Food;
@@ -21,7 +22,7 @@ public class BasketTests {
 	}
 
 	@Test
-	public void testCalculateTotalPricePass() {
+	public void testCalculateTotalPricePass() throws InvalidProductPriceException {
 		ArrayList<Product> products = new ArrayList<Product>() {{
 			 add(new Food("Test Food 1", "A tasty bit of testing", 2.10f, "FOOD123"));
 			 add(new Drink("Test Drink 1", "A tasty bit of testing", 1.10f, "DRINK123"));
@@ -40,7 +41,7 @@ public class BasketTests {
 	}
 
 	@Test
-	public void testCalculateDiscountsPass() {
+	public void testCalculateDiscountsPass() throws InvalidProductPriceException {
 		ArrayList<Product> products = new ArrayList<Product>() {{
 			 add(new Food("Test Food 1", "A tasty bit of testing 1", 2.10f, "FOOD123"));
 			 add(new Food("Test Food 2", "A tasty bit of testing 2", 2.10f, "FOOD124"));
@@ -55,7 +56,7 @@ public class BasketTests {
 	}
 	
 	@Test
-	public void testCalculateDiscountsDoesntGiveDiscountWhenLessThanTwoMemAndOneDrinkPass() {
+	public void testCalculateDiscountsDoesntGiveDiscountWhenLessThanTwoMemAndOneDrinkPass() throws InvalidProductPriceException {
 		ArrayList<Product> products = new ArrayList<Product>() {{
 			 add(new Food("Test Food 1", "A tasty bit of testing 1", 2.10f, "FOOD123"));
 			 add(new Food("Test Food 2", "A tasty bit of testing 2", 2.10f, "FOOD124"));
@@ -69,7 +70,7 @@ public class BasketTests {
 	}
 	
 	@Test
-	public void getProductsReturnsCorrectNumberOfProductsPass() {
+	public void getProductsReturnsCorrectNumberOfProductsPass() throws InvalidProductPriceException {
 		ArrayList<Product> products = new ArrayList<Product>() {{
 			 add(new Food("Test Food 1", "A tasty bit of testing 1", 2.10f, "FOOD123"));
 		}};
@@ -81,7 +82,7 @@ public class BasketTests {
 	}
 	
 	@Test
-	public void clearBasketClearsProductsListPass() {
+	public void clearBasketClearsProductsListPass() throws InvalidProductPriceException {
 		ArrayList<Product> products = new ArrayList<Product>() {{
 			 add(new Food("Test Food 1", "A tasty bit of testing 1", 2.10f, "FOOD123"));
 		}};
@@ -94,7 +95,7 @@ public class BasketTests {
 	}
 	
 	@Test
-	public void removeProductRemovesProductsFromListPass() {
+	public void removeProductRemovesProductsFromListPass() throws InvalidProductPriceException {
 		Product product = new Food("Test Food 1", "A tasty bit of testing 1", 2.10f, "FOOD123");
 		ArrayList<Product> products = new ArrayList<Product>() {{
 			 add(product);

@@ -3,6 +3,7 @@ package fileManagerIO;
 import java.util.*;
 import java.util.Date;
 
+import customExceptions.InvalidProductPriceException;
 import order.Basket;
 import order.Drink;
 import order.Food;
@@ -45,7 +46,7 @@ public class FileManagerIO {
 	}
 
 	//reads each line of a file that's passed to it
-	public void readFromProductsFile(String fileName)
+	public void readFromProductsFile(String fileName) throws InvalidProductPriceException
 	{
 		File file = new File(fileName);
 		try {
@@ -65,27 +66,28 @@ public class FileManagerIO {
 	}
 
 	//processes each line of the Products file.
-	private void processMenuLine(String inputLine) {
+	private void processMenuLine(String inputLine) throws NumberFormatException, InvalidProductPriceException {
+		String part[] = inputLine.split(",");
+		String id = part[part.length-1];
+		String name = part[0];
+		String desc = part[1];
 		try {
-			String part[] = inputLine.split(",");
-			String id = part[part.length-1];
-			String name = part[0];
-			String desc = part[1];
-			float price = Float.parseFloat(part[2]);
-			String cat = part[3];
-			if (cat.contentEquals("Food")) {
-				Food p = new Food(name, desc, price, id);
-				products.add(p);
-			} else if (cat.contentEquals("Beverage")) {
-				Drink p = new Drink(name, desc, price, id);
-				products.add(p);
-			} else if (cat.contentEquals("Memorabilia")) {
-				Memoribilia p = new Memoribilia(name, desc, price, id);
-				products.add(p);
-				// no else for readability
-			}
-		}catch(NumberFormatException ex) {
-			ex.printStackTrace();
+		float price = Float.parseFloat(part[2]);
+		String cat = part[3];
+		if (cat.contentEquals("Food")) {
+			Food p = new Food(name, desc, price, id);
+			products.add(p);
+		} else if (cat.contentEquals("Beverage")) {
+			Drink p = new Drink(name, desc, price, id);
+			products.add(p);
+		} else if (cat.contentEquals("Memorabilia")) {
+			Memoribilia p = new Memoribilia(name, desc, price, id);
+			products.add(p);
+			// no else for readability
+		}
+		} catch(NumberFormatException a) {
+			throw new InvalidProductPriceException("Product ID " + id + " has an invalid price");
+			
 		}
 	}
 	//reads each line of a file that's passed to it

@@ -5,12 +5,14 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import customExceptions.InvalidProductPriceException;
+import fileManagerIO.FileManagerIO;
 import order.Drink;
 
 public class DrinkClassTests {
 	
 	private Drink d;
-	
+	FileManagerIO f;
 	private String name = "Coke";
 	private String desc = "An ice-cold coke";
 	private float price =  (float )1.99;
@@ -19,7 +21,7 @@ public class DrinkClassTests {
 
 	
 	@Before
-	public void setup(){
+	public void setup() throws InvalidProductPriceException{
 	d = new Drink(name, desc, price,id);
 	}
 	
@@ -37,7 +39,6 @@ public class DrinkClassTests {
 		
 	}
 	
-
 	@Test
 	public void getPricePass() {
 		
@@ -57,5 +58,5 @@ public class DrinkClassTests {
 		assertEquals(x, d.getMenuDisplay());
 		
 	}
-
+	
 }

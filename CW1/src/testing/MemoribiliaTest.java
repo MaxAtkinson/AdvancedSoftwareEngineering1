@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import customExceptions.InvalidProductPriceException;
 import order.Memoribilia;
 
 public class MemoribiliaTest {
@@ -19,7 +20,7 @@ private Memoribilia m;
 
 	
 	@Before
-	public void setup(){
+	public void setup() throws InvalidProductPriceException{
 	m = new Memoribilia(name, desc, price,id);
 	}
 	
