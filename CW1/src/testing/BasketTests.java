@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.Test;
 
+import customExceptions.InvalidProductIdentifierException;
 import customExceptions.InvalidProductPriceException;
 import order.Basket;
 import order.Drink;
@@ -22,7 +23,7 @@ public class BasketTests {
 	}
 
 	@Test
-	public void testCalculateTotalPricePass() throws InvalidProductPriceException {
+	public void testCalculateTotalPricePass() throws InvalidProductPriceException, InvalidProductIdentifierException {
 		ArrayList<Product> products = new ArrayList<Product>() {{
 			 add(new Food("Test Food 1", "A tasty bit of testing", 2.10f, "FOOD123"));
 			 add(new Drink("Test Drink 1", "A tasty bit of testing", 1.10f, "DRINK123"));
@@ -41,7 +42,7 @@ public class BasketTests {
 	}
 
 	@Test
-	public void testCalculateDiscountsPass() throws InvalidProductPriceException {
+	public void testCalculateDiscountsPass() throws InvalidProductPriceException, InvalidProductIdentifierException {
 		ArrayList<Product> products = new ArrayList<Product>() {{
 			 add(new Food("Test Food 1", "A tasty bit of testing 1", 2.10f, "FOOD123"));
 			 add(new Food("Test Food 2", "A tasty bit of testing 2", 2.10f, "FOOD124"));
@@ -56,7 +57,7 @@ public class BasketTests {
 	}
 	
 	@Test
-	public void testCalculateDiscountsDoesntGiveDiscountWhenLessThanTwoMemAndOneDrinkPass() throws InvalidProductPriceException {
+	public void testCalculateDiscountsDoesntGiveDiscountWhenLessThanTwoMemAndOneDrinkPass() throws InvalidProductPriceException, InvalidProductIdentifierException {
 		ArrayList<Product> products = new ArrayList<Product>() {{
 			 add(new Food("Test Food 1", "A tasty bit of testing 1", 2.10f, "FOOD123"));
 			 add(new Food("Test Food 2", "A tasty bit of testing 2", 2.10f, "FOOD124"));
@@ -70,7 +71,7 @@ public class BasketTests {
 	}
 	
 	@Test
-	public void getProductsReturnsCorrectNumberOfProductsPass() throws InvalidProductPriceException {
+	public void getProductsReturnsCorrectNumberOfProductsPass() throws InvalidProductPriceException, InvalidProductIdentifierException {
 		ArrayList<Product> products = new ArrayList<Product>() {{
 			 add(new Food("Test Food 1", "A tasty bit of testing 1", 2.10f, "FOOD123"));
 		}};
@@ -82,7 +83,7 @@ public class BasketTests {
 	}
 	
 	@Test
-	public void clearBasketClearsProductsListPass() throws InvalidProductPriceException {
+	public void clearBasketClearsProductsListPass() throws InvalidProductPriceException, InvalidProductIdentifierException {
 		ArrayList<Product> products = new ArrayList<Product>() {{
 			 add(new Food("Test Food 1", "A tasty bit of testing 1", 2.10f, "FOOD123"));
 		}};
@@ -95,7 +96,7 @@ public class BasketTests {
 	}
 	
 	@Test
-	public void removeProductRemovesProductsFromListPass() throws InvalidProductPriceException {
+	public void removeProductRemovesProductsFromListPass() throws InvalidProductPriceException, InvalidProductIdentifierException {
 		Product product = new Food("Test Food 1", "A tasty bit of testing 1", 2.10f, "FOOD123");
 		ArrayList<Product> products = new ArrayList<Product>() {{
 			 add(product);

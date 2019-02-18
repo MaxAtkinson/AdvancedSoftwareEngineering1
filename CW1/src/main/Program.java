@@ -21,6 +21,7 @@ import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreeSelectionModel;
 
+import customExceptions.InvalidProductIdentifierException;
 import customExceptions.InvalidProductPriceException;
 
 
@@ -43,7 +44,7 @@ public class Program extends JFrame {
 	private static JLabel discount, total;
 	
 
-	public static void main(String[] args) throws InvalidProductPriceException {
+	public static void main(String[] args) throws InvalidProductPriceException, InvalidProductIdentifierException {
 		f = FileManagerIO.getInstances();
 		f.readFromProductsFile(productsFileName);
 		f.readFromOrderFile(ordersFileName);

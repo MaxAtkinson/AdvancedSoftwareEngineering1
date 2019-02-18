@@ -3,6 +3,7 @@ package fileManagerIO;
 import java.util.*;
 import java.util.Date;
 
+import customExceptions.InvalidProductIdentifierException;
 import customExceptions.InvalidProductPriceException;
 import order.Basket;
 import order.Drink;
@@ -46,7 +47,7 @@ public class FileManagerIO {
 	}
 
 	//reads each line of a file that's passed to it
-	public void readFromProductsFile(String fileName) throws InvalidProductPriceException
+	public void readFromProductsFile(String fileName) throws InvalidProductPriceException, InvalidProductIdentifierException
 	{
 		File file = new File(fileName);
 		try {
@@ -66,7 +67,7 @@ public class FileManagerIO {
 	}
 
 	//processes each line of the Products file.
-	private void processMenuLine(String inputLine) throws NumberFormatException, InvalidProductPriceException {
+	private void processMenuLine(String inputLine) throws NumberFormatException, InvalidProductPriceException, InvalidProductIdentifierException {
 		String part[] = inputLine.split(",");
 		String id = part[part.length-1];
 		String name = part[0];

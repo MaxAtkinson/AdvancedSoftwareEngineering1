@@ -6,8 +6,10 @@ import java.nio.file.Paths;
 import org.junit.Before;
 import org.junit.Test;
 
+import customExceptions.InvalidProductIdentifierException;
 import customExceptions.InvalidProductPriceException;
 import fileManagerIO.FileManagerIO;
+import order.Drink;
 
 public class ExceptionsTests {
 	FileManagerIO f;
@@ -27,8 +29,14 @@ public class ExceptionsTests {
 	}
 	
 	@Test(expected = InvalidProductPriceException.class)
-	public void thorwsInvalidPriceException() throws InvalidProductPriceException {
+	public void thorwsInvalidPriceException() throws InvalidProductPriceException, InvalidProductIdentifierException {
 		f.readFromProductsFile(productsFileName);
+		
+	}
+	
+	@Test(expected = InvalidProductIdentifierException.class)
+	public void throwsInvalidProductException() throws InvalidProductPriceException, InvalidProductIdentifierException {
+		Drink exception = new Drink("Exceptional Coke", "An Exceptional Coke", (float) 10.99, "MEM111");
 		
 	}
 }
