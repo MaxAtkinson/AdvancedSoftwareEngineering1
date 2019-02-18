@@ -55,4 +55,9 @@ public class ProductClassTests {
 		
 	}
 	
+	@Test
+	public void toStringIsCorrectPass() {
+		assertEquals("Cottage pie", p.toString());
+	}
+	
 }

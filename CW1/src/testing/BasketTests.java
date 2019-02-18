@@ -14,7 +14,7 @@ import order.Product;
 
 public class BasketTests {
 	private Basket basket = null;
-	
+
 	@Before
 	public void setup(){
 		basket = null;

@@ -39,7 +39,7 @@ public class Product {
 	
 	//added in for GUI
 	public String toString() { 
-	    return String.format("%s", name);
+	    return name;
 	    		
 	} 
 	
