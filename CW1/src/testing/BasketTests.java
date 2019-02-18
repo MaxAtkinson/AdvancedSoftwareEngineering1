@@ -26,7 +26,7 @@ public class BasketTests {
 	public void testCalculateTotalPricePass() throws InvalidProductPriceException, InvalidProductIdentifierException {
 		ArrayList<Product> products = new ArrayList<Product>() {{
 			 add(new Food("Test Food 1", "A tasty bit of testing", 2.10f, "FOOD123"));
-			 add(new Drink("Test Drink 1", "A tasty bit of testing", 1.10f, "DRINK123"));
+			 add(new Drink("Test Drink 1", "A tasty bit of testing", 1.10f, "BEV123"));
 			 add(new Memoribilia("Test Memoribilia 1", "A tasty bit of testing", 1.00f, "MEM123"));
 		 }};
 		 basket = new Basket();
@@ -47,7 +47,7 @@ public class BasketTests {
 			 add(new Food("Test Food 1", "A tasty bit of testing 1", 2.10f, "FOOD123"));
 			 add(new Food("Test Food 2", "A tasty bit of testing 2", 2.10f, "FOOD124"));
 			 add(new Food("Test Food 3", "A tasty bit of testing 3", 2.10f, "FOOD125"));
-			 add(new Drink("Test Drink 1", "A tasty bit of testing", 1.10f, "DRINK123"));
+			 add(new Drink("Test Drink 1", "A tasty bit of testing", 1.10f, "BEV123"));
 			 add(new Memoribilia("Test Memoribilia 1", "A tasty bit of testing", 1.00f, "MEM123"));
 			 add(new Memoribilia("Test Memoribilia 2", "A tasty bit of testing", 1.00f, "MEM124"));
 		}};
