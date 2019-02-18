@@ -29,7 +29,7 @@ public class ExceptionsTests {
 	}
 	
 	@Test(expected = InvalidProductPriceException.class)
-	public void thorwsInvalidPriceException() throws InvalidProductPriceException, InvalidProductIdentifierException {
+	public void throwsInvalidPriceException() throws InvalidProductPriceException, InvalidProductIdentifierException {
 		f.readFromProductsFile(productsFileName);
 		
 	}
