@@ -35,8 +35,20 @@ public class ExceptionsTests {
 	}
 	
 	@Test(expected = InvalidProductIdentifierException.class)
-	public void throwsInvalidProductException() throws InvalidProductPriceException, InvalidProductIdentifierException {
-		Drink exception = new Drink("Exceptional Coke", "An Exceptional Coke", (float) 10.99, "MEM111");
+	public void throwsInvalidDrinkIdentifierException() throws InvalidProductPriceException, InvalidProductIdentifierException {
+		Drink exception = new Drink("Exceptional Coke", "An Exceptional Coke", (float) 10.99, "TEST111");
+		
+	}
+	
+	@Test(expected = InvalidProductIdentifierException.class)
+	public void throwsInvalidFoodIdentifierException() throws InvalidProductPriceException, InvalidProductIdentifierException {
+		Drink exception = new Drink("Exceptional Cake", "An Exceptional Cake", (float) 10.99, "TEST111");
+		
+	}
+	
+	@Test(expected = InvalidProductIdentifierException.class)
+	public void throwsInvalidMemoribiliaIdentifierException() throws InvalidProductPriceException, InvalidProductIdentifierException {
+		Drink exception = new Drink("Exceptional Item", "An Exceptional Item", (float) 10.99, "TEST111");
 		
 	}
 }
