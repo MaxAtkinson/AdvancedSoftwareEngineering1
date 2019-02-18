@@ -10,6 +10,8 @@ import customExceptions.InvalidProductIdentifierException;
 import customExceptions.InvalidProductPriceException;
 import fileManagerIO.FileManagerIO;
 import order.Drink;
+import order.Food;
+import order.Memoribilia;
 
 public class ExceptionsTests {
 	FileManagerIO f;
@@ -42,13 +44,13 @@ public class ExceptionsTests {
 	
 	@Test(expected = InvalidProductIdentifierException.class)
 	public void throwsInvalidFoodIdentifierException() throws InvalidProductPriceException, InvalidProductIdentifierException {
-		Drink exception = new Drink("Exceptional Cake", "An Exceptional Cake", (float) 10.99, "TEST111");
+		Food exception = new Food("Exceptional Cake", "An Exceptional Cake", (float) 10.99, "TEST111");
 		
 	}
 	
 	@Test(expected = InvalidProductIdentifierException.class)
 	public void throwsInvalidMemoribiliaIdentifierException() throws InvalidProductPriceException, InvalidProductIdentifierException {
-		Drink exception = new Drink("Exceptional Item", "An Exceptional Item", (float) 10.99, "TEST111");
+		Memoribilia exception = new Memoribilia("Exceptional Item", "An Exceptional Item", (float) 10.99, "TEST111");
 		
 	}
 }
