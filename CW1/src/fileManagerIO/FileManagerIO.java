@@ -34,10 +34,7 @@ public class FileManagerIO {
 	private ArrayList<Order> existingOrders = new ArrayList<>();
 	private Set<Product> products = new HashSet<Product>();
 
-	/**
-	 * These getters are used in Junit tests to ensure the effectiveness of private methods 
-	 * elsewhere in the class.
-	 */
+	/* Getters are used in Junit tests to ensure the effectiveness of private methods elsewhere in the class. */
 	public int getSizeOfExistingOrders() 
 	{
 		return existingOrders.size();
@@ -51,10 +48,8 @@ public class FileManagerIO {
 	public Set<Product> getProducts() {
 		return products;
 	}
-	
-	/**
-	 * Used to read in a CSV with product information. Passes this read information to the processMenuLine() method.
-	 */
+	 	
+	/* Used to read in a CSV with product information. Passes this read information to the processMenuLine() method.*/
 	public void readFromProductsFile(String fileName) throws InvalidProductPriceException, InvalidProductIdentifierException
 	{
 		File file = new File(fileName);
@@ -74,9 +69,7 @@ public class FileManagerIO {
 		}
 	}
 	
-	/**
-	 * Takes in lines from the CSV and creates objects of type Drink, Food, or Memorabilia 
-	 */
+	/* Takes in lines from the CSV and creates objects of type Drink, Food, or Memorabilia */
 	private void processMenuLine(String inputLine) throws NumberFormatException, InvalidProductPriceException, InvalidProductIdentifierException {
 		String part[] = inputLine.split(",");
 		String id = part[part.length-1];
@@ -101,9 +94,7 @@ public class FileManagerIO {
 			
 		}
 	}
-	/**
-	 * Used to read in a CSV with previous orders information. Passes this read information to the processOrderLine() method.
-	 */	
+	/* Used to read in a CSV with previous orders information. Passes this read information to the processOrderLine() method.*/	
 	public void readFromOrderFile(String fileName) 
 	{
 		File file = new File(fileName);
@@ -123,9 +114,7 @@ public class FileManagerIO {
 		}
 	}
 	
-	/**
-	 * Takes in lines from the CSV and creates objects of type Order placing them in the ArrayList existing orders.
-	 */
+	/* Takes in lines from the CSV and creates objects of type Order placing them in the ArrayList existing orders.*/
 	private void processOrderLine(String inputLine) {
 		try {
 			String part[] = inputLine.split(",");
@@ -139,9 +128,7 @@ public class FileManagerIO {
 		}
 	}
 	
-	/**
-	 * Creates a new customer idea for new orders passed from the GUI.
-	 */
+	/* Creates a new customer idea for new orders passed from the GUI.*/
 	private String createCustomerID() {
 		if (existingOrders.size()==0) {
 			return "CUS" + 1;
@@ -154,9 +141,7 @@ public class FileManagerIO {
 		return "CUS" + newCustomerStr;
 	}
 	
-	/**
-	 * Adds new orders to the existing orders array list passed from the GUI
-	 */
+	/* Adds new orders to the existing orders array list passed from the GUI*/
 	public void addCurrentOrder(ArrayList<Product> pList) {
 		Date date = new Date();
 		long timeStamp = date.getTime();
@@ -172,9 +157,7 @@ public class FileManagerIO {
 		}
 	}
 	
-	/**
-	 * Used to find the Product objects which are stored in orders
-	 */
+	/* Used to find the Product objects which are stored in orders*/
 	private Product findProduct(String productID) {
 		Product thisProduct = null;
 		for (Product a : products) {
@@ -185,9 +168,7 @@ public class FileManagerIO {
 		return thisProduct;
 	}
 	
-	/**
-	 * Writes new orders to the Orders.csv
-	 */
+	/* Writes new orders to the Orders.csv*/
 	public void store(Order o) throws IOException {
 		FileWriter fw = new FileWriter("Orders.csv", true);
 		String timestamp = Long.toString(o.getTimestamp());
@@ -198,9 +179,7 @@ public class FileManagerIO {
 		fw.close();
 	}
 
-	/**
-	 * Used by writeReport() to find the number of times a product was ordered
-	 */
+	/* Used by writeReport() to find the number of times a product was ordered*/
 	private int timesProductWasOrdered(Product p) {
 		int timesOrdered = 0;
 		for(Order o: existingOrders) {
@@ -211,9 +190,7 @@ public class FileManagerIO {
 		return timesOrdered;
 	}
 	
-	/**
-	 * Used by writeReport() to calculate the total income.
-	 */
+	/* Used by writeReport() to calculate the total income.*/
 	private float totalIncome() {
 		float totalIncome = 0;
 		ArrayList<Product> oneCustomer = new ArrayList<>();
@@ -238,9 +215,7 @@ public class FileManagerIO {
 		return totalIncome;
 	}
 
-	/**
-	 * Writes the final report to file. Called by the GUI on clicking the 'QUIT' button.
-	 */
+	/* Writes the final report to file. Called by the GUI on clicking the 'QUIT' button.*/
 	public void writeReport(String filename) throws IOException {
 		FileWriter fw = new FileWriter (filename); {
 			fw.write("These are all the products on offer:\n");
