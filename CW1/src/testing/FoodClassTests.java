@@ -54,11 +54,4 @@ public class FoodClassTests {
 		assertEquals(id,f.getId());
 	};
 
-	@Test
-	public void getMenuDisplayPass(){
-		String x = name + " £" + price;
-		assertEquals(x, f.getMenuDisplay());
-		
-	}
-
 }
