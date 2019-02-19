@@ -1,5 +1,9 @@
 package order;
 
+/**
+ * This class holds a single order which consists of one product
+ * of type Food, Drink, or Memorabilia, a timestamp, and a customer ID.
+ */
 public class Order {
 
 	private long timestamp;
@@ -12,8 +16,8 @@ public class Order {
 		this.custID = custID;
 	}
 	
-
-
+	/* Getters */
+	
 	public long getTimestamp() {
 		return timestamp;
 	}

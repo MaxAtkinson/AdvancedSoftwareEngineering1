@@ -11,10 +11,10 @@ public class Product {
 	private float price;
 	private String id;
 	
-	public Product(String name, String desc, float price2, String id) {
+	public Product(String name, String desc, float price, String id) {
 		this.name = name;
 		this.desc = desc;
-		this.price = price2;
+		this.price = price;
 		this.id = id;
 	}
 	
