@@ -22,35 +22,38 @@ public class ExceptionsTests {
 	Path ordersPath;
 	long lineCount;
 	long newLineCount;
-	
+
 	@Before
 	public void setup() {
 		f = FileManagerIO.getInstances();
 		productsFileName = "ProductsTestException.csv";
 		menuPath = Paths.get(productsFileName);
 	}
-	
+
 	@Test(expected = InvalidProductPriceException.class)
 	public void throwsInvalidPriceException() throws InvalidProductPriceException, InvalidProductIdentifierException {
 		f.readFromProductsFile(productsFileName);
-		
+
 	}
-	
+
 	@Test(expected = InvalidProductIdentifierException.class)
-	public void throwsInvalidDrinkIdentifierException() throws InvalidProductPriceException, InvalidProductIdentifierException {
+	public void throwsInvalidDrinkIdentifierException()
+			throws InvalidProductPriceException, InvalidProductIdentifierException {
 		Drink exception = new Drink("Exceptional Coke", "An Exceptional Coke", (float) 10.99, "TEST111");
-		
+
 	}
-	
+
 	@Test(expected = InvalidProductIdentifierException.class)
-	public void throwsInvalidFoodIdentifierException() throws InvalidProductPriceException, InvalidProductIdentifierException {
+	public void throwsInvalidFoodIdentifierException()
+			throws InvalidProductPriceException, InvalidProductIdentifierException {
 		Food exception = new Food("Exceptional Cake", "An Exceptional Cake", (float) 10.99, "TEST111");
-		
+
 	}
-	
+
 	@Test(expected = InvalidProductIdentifierException.class)
-	public void throwsInvalidMemoribiliaIdentifierException() throws InvalidProductPriceException, InvalidProductIdentifierException {
+	public void throwsInvalidMemoribiliaIdentifierException()
+			throws InvalidProductPriceException, InvalidProductIdentifierException {
 		Memoribilia exception = new Memoribilia("Exceptional Item", "An Exceptional Item", (float) 10.99, "TEST111");
-		
+
 	}
 }
