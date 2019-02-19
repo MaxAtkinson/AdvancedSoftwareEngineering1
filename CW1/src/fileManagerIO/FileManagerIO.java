@@ -16,7 +16,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-
+/**
+ * This class is responsible for reading in CSV files and creating objects used throughout
+ * the rest of the program.  
+ */
 public class FileManagerIO {
 	//Making this a singleton class
 	private static FileManagerIO firstInstance = null;
@@ -31,7 +34,10 @@ public class FileManagerIO {
 	private ArrayList<Order> existingOrders = new ArrayList<>();
 	private Set<Product> products = new HashSet<Product>();
 
-
+	/**
+	 * These getters are used in Junit tests to ensure the effectiveness of private methods 
+	 * elsewhere in the class.
+	 */
 	public int getSizeOfExistingOrders() 
 	{
 		return existingOrders.size();
@@ -45,8 +51,10 @@ public class FileManagerIO {
 	public Set<Product> getProducts() {
 		return products;
 	}
-
-	//reads each line of a file that's passed to it
+	
+	/**
+	 * Used to read in a CSV with product information. Passes this read information to the processMenuLine() method.
+	 */
 	public void readFromProductsFile(String fileName) throws InvalidProductPriceException, InvalidProductIdentifierException
 	{
 		File file = new File(fileName);
@@ -65,8 +73,10 @@ public class FileManagerIO {
 			System.out.print("File: " + fileName + " cannot be found.");
 		}
 	}
-
-	//processes each line of the Products file.
+	
+	/**
+	 * Takes in lines from the CSV and creates objects of type Drink, Food, or Memorabilia 
+	 */
 	private void processMenuLine(String inputLine) throws NumberFormatException, InvalidProductPriceException, InvalidProductIdentifierException {
 		String part[] = inputLine.split(",");
 		String id = part[part.length-1];
@@ -91,7 +101,9 @@ public class FileManagerIO {
 			
 		}
 	}
-	//reads each line of a file that's passed to it
+	/**
+	 * Used to read in a CSV with previous orders information. Passes this read information to the processOrderLine() method.
+	 */	
 	public void readFromOrderFile(String fileName) 
 	{
 		File file = new File(fileName);
@@ -110,8 +122,10 @@ public class FileManagerIO {
 			System.out.print("File: " + fileName + " cannot be found.");
 		}
 	}
-
-	//processes each line of the Products file.
+	
+	/**
+	 * Takes in lines from the CSV and creates objects of type Order placing them in the ArrayList existing orders.
+	 */
 	private void processOrderLine(String inputLine) {
 		try {
 			String part[] = inputLine.split(",");
@@ -124,7 +138,10 @@ public class FileManagerIO {
 			ex.printStackTrace();
 		}
 	}
-
+	
+	/**
+	 * Creates a new customer idea for new orders passed from the GUI.
+	 */
 	private String createCustomerID() {
 		if (existingOrders.size()==0) {
 			return "CUS" + 1;
@@ -136,8 +153,10 @@ public class FileManagerIO {
 		String newCustomerStr = Long.toString(newCustomerNum);
 		return "CUS" + newCustomerStr;
 	}
-
-	//adds new orders (from the GUI) to current orders
+	
+	/**
+	 * Adds new orders to the existing orders array list passed from the GUI
+	 */
 	public void addCurrentOrder(ArrayList<Product> pList) {
 		Date date = new Date();
 		long timeStamp = date.getTime();
@@ -152,8 +171,10 @@ public class FileManagerIO {
 			}
 		}
 	}
-
-	//for creating existing orders. Finds Product objects from product ID
+	
+	/**
+	 * Used to find the Product objects which are stored in orders
+	 */
 	private Product findProduct(String productID) {
 		Product thisProduct = null;
 		for (Product a : products) {
@@ -163,7 +184,10 @@ public class FileManagerIO {
 		}
 		return thisProduct;
 	}
-
+	
+	/**
+	 * Writes new orders to the Orders.csv
+	 */
 	public void store(Order o) throws IOException {
 		FileWriter fw = new FileWriter("Orders.csv", true);
 		String timestamp = Long.toString(o.getTimestamp());
@@ -174,6 +198,9 @@ public class FileManagerIO {
 		fw.close();
 	}
 
+	/**
+	 * Used by writeReport() to find the number of times a product was ordered
+	 */
 	private int timesProductWasOrdered(Product p) {
 		int timesOrdered = 0;
 		for(Order o: existingOrders) {
@@ -183,7 +210,10 @@ public class FileManagerIO {
 		}
 		return timesOrdered;
 	}
-
+	
+	/**
+	 * Used by writeReport() to calculate the total income.
+	 */
 	private float totalIncome() {
 		float totalIncome = 0;
 		ArrayList<Product> oneCustomer = new ArrayList<>();
@@ -208,7 +238,9 @@ public class FileManagerIO {
 		return totalIncome;
 	}
 
-
+	/**
+	 * Writes the final report to file. Called by the GUI on clicking the 'QUIT' button.
+	 */
 	public void writeReport(String filename) throws IOException {
 		FileWriter fw = new FileWriter (filename); {
 			fw.write("These are all the products on offer:\n");
