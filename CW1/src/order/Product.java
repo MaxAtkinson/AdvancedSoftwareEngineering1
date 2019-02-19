@@ -1,6 +1,9 @@
 package order;
 
-
+/**
+ * This class is a base class for all products in a menu file.
+ * Derived classes Food, Drink, and Memorabilia extend from this.
+ */
 public class Product {
 
 	private String name;
@@ -14,16 +17,16 @@ public class Product {
 		this.price = price2;
 		this.id = id;
 	}
-
+	
+	/* Getters */
+	
 	public String getName() {
 		return name;
 	}
-	
 
 	public String getDesc() {
 		return desc;
 	}
-
 
 	public float getPrice() {
 		return price;
@@ -33,15 +36,8 @@ public class Product {
 		return id;
 	}
 	
-	public String getMenuDisplay() {
-		return name + " £" + price;	
-	}
-	
 	//added in for GUI
 	public String toString() { 
-	    return name;
-	    		
+	    return name;   		
 	} 
-	
-	
 }

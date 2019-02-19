@@ -213,7 +213,8 @@ public class FileManagerIO {
 		FileWriter fw = new FileWriter (filename); {
 			fw.write("These are all the products on offer:\n");
 			for (Product p: products) {
-				fw.write(p.getMenuDisplay() + " " + p.getDesc() + ". This item was ordered a total of " + timesProductWasOrdered(p) + " times.\n");
+				fw.write(p.getName() + "£" + p.getPrice() + " " + p.getDesc() + 
+						". This item was ordered a total of " + timesProductWasOrdered(p) + " times.\n");
 			}
 			fw.write("The total income was: " + totalIncome() + "\n");
 			fw.close();
