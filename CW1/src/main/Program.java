@@ -321,7 +321,7 @@ public class Program extends JFrame {
 		
 		DefaultMutableTreeNode food = new DefaultMutableTreeNode("Food");
 		DefaultMutableTreeNode drink = new DefaultMutableTreeNode("Drink");
-		DefaultMutableTreeNode mem = new DefaultMutableTreeNode("Memoribilia");
+		DefaultMutableTreeNode mem = new DefaultMutableTreeNode("Memorabilia");
 		root.add(food);
 		root.add(drink);
 		root.add(mem);
