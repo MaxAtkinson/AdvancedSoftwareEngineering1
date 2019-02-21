@@ -60,7 +60,6 @@ public class Program extends JFrame {
 
 	/** Initialising GUI Defaults */
 	public Program() {
-
 		createView();
 		initBtnActions();
 		setTitle("ASE Coffee Shop");

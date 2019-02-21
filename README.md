@@ -103,3 +103,8 @@ We further discussed our current progress and will continue to implement the fir
 	•	Exception handling in subclasses
 
 -	Scheduled earlier meeting for Monday next week. 
+
+## Meeting Minutes 18/02/19
+-	Brief meeting to discuss report and finishing touches to the code 
+-	An initial draft of report was put together 
+-	Class diagram to be added to report later today 
