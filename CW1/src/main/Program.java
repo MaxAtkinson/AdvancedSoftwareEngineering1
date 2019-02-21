@@ -31,7 +31,6 @@ public class Program extends JFrame {
 	private static String productsFileName = "Products.csv";
 	private static String ordersFileName = "Orders.csv";
 	private static FileManagerIO f;
-	//ArrayList<Product> basketOrders = new ArrayList<Product>();
 	private static String currentSetSelection;
 	private static Product curentListSelection;
 	private static Basket b;
@@ -44,6 +43,7 @@ public class Program extends JFrame {
 	private static JLabel discount, total;
 	
 
+	//Main method instantiating single instance of FileManagerIO and running GUI
 	public static void main(String[] args) throws InvalidProductPriceException, InvalidProductIdentifierException {
 		f = FileManagerIO.getInstances();
 		f.readFromProductsFile(productsFileName);
@@ -114,7 +114,7 @@ public class Program extends JFrame {
 			}
 		});
 
-		//formatting
+		//format
 		menuPane.setPreferredSize(new Dimension(200, 250));
 		menuPane.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Menu",
 				TitledBorder.LEFT, TitledBorder.TOP));
@@ -137,13 +137,14 @@ public class Program extends JFrame {
 		orderList.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent e) {
 
+				/* retrieve the object that was selected*/
 				orderList.getSelectedValue();
 				curentListSelection = orderList.getSelectedValue();
 
 			}
 		});
 
-		//formatting
+		//format
 		orderPane.setPreferredSize(new Dimension(300, 200));
 		orderPane.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Order",
 				TitledBorder.LEFT, TitledBorder.TOP));
@@ -156,6 +157,7 @@ public class Program extends JFrame {
 		c.insets = new Insets(0, 0, 0, 0);
 
 		/**DISCOUNT JLABLE*/
+		//format
 		discount = new JLabel("Discounts: ");
 		c.gridx = 3;
 		c.gridy = 3;
@@ -165,6 +167,7 @@ public class Program extends JFrame {
 		c.insets = new Insets(0, 0, 0, 0);
 		
 		/**TOTAL JLABLE*/
+		//format
 		total = new JLabel("Total: ");
 		c.gridx = 3;
 		c.gridy = 3;
@@ -174,6 +177,7 @@ public class Program extends JFrame {
 		c.insets = new Insets(0, 0, 0, 0);
 		
 		/**CANCEL BUTTON*/
+		//format
 		buttonCancel = new JButton("Cancel Order");
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.anchor = GridBagConstraints.LAST_LINE_START;
@@ -221,8 +225,10 @@ public class Program extends JFrame {
 
 	}
 	
+	//initialising button actions
 	private void initBtnActions() {
-		// Following methods executed  when the button is pressed
+		
+		// following methods executed when the CANCEL button is pressed
 		buttonCancel.addActionListener(new ActionListener() {
 
 			@Override
@@ -236,6 +242,7 @@ public class Program extends JFrame {
 			}
 		});
 		
+		// following methods executed when the CONFIRM ORDER button is pressed
 		buttonConfirm.addActionListener(new ActionListener() {
 
 			@Override
@@ -251,6 +258,7 @@ public class Program extends JFrame {
 			}
 		});
 		
+		// following methods executed when the CONFIRM ORDER button is pressed
 		buttonAdd.addActionListener(new ActionListener() {
 
 			@Override
@@ -258,7 +266,7 @@ public class Program extends JFrame {
 				
 				//If leaf node not selected, display message and return
 				if (currentSetSelection.contains("Products") || currentSetSelection.contains("Food") || currentSetSelection.contains("Drink")
-						|| currentSetSelection.contains("Memorobilia")) {
+						|| currentSetSelection.contains("Memorabilia")) {
 					JOptionPane.showMessageDialog(null, "Please select a product to add to the basket");
 					return;
 				}
@@ -273,6 +281,7 @@ public class Program extends JFrame {
 			}
 		});
 		
+		// following methods executed when the REMOVE button is pressed
 		buttonRemove.addActionListener(new ActionListener() {
 
 			@Override
@@ -289,6 +298,7 @@ public class Program extends JFrame {
 			}
 		});
 		
+		// following methods executed when the QUIT button is pressed
 		buttonQuit.addActionListener(new ActionListener() {
 
 			@Override
@@ -329,17 +339,20 @@ public class Program extends JFrame {
 
 	}
 	
+	//sets total and discount JLable values
 	private void setDiscountAndTotal() {
 		ArrayList<Product> pl = b.getProducts();
 		total.setText("Total: £" + roundTwoDP(Basket.calculateDiscountedTotal(pl)));
 		discount.setText("Discount: -£" + roundTwoDP(Basket.calculateTotalPrice(pl)-Basket.calculateDiscountedTotal(pl)));
 	}
 	
+	//displays products in basket JList
 	private void displayBasket() {
 		Product[] array = b.getProducts().toArray(new Product[b.getProducts().size()]);
 		orderList.setListData(array);
 	}
 	
+	//rounds figures to two decimal places
 	private static float roundTwoDP(float d) { 
 		DecimalFormat twoDForm = new DecimalFormat("#.##"); 
 		return Float.valueOf(twoDForm.format(d)); }
