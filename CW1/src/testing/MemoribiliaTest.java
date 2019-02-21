@@ -53,11 +53,4 @@ private Memoribilia m;
 		assertEquals(id,m.getId());
 	};
 
-	@Test
-	public void getMenuDisplayPass(){
-		String x = name + " £" + price;
-		assertEquals(x, m.getMenuDisplay());
-		
-	}
-
 }

@@ -52,12 +52,5 @@ public class DrinkClassTests {
 		
 		assertEquals(id,d.getId());
 	};
-
-	@Test
-	public void getMenuDisplayPass(){
-		String x = name + " £" + price;
-		assertEquals(x, d.getMenuDisplay());
-		
-	}
 	
 }

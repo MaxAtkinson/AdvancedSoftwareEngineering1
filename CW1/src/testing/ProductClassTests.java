@@ -47,13 +47,6 @@ public class ProductClassTests {
 		
 		assertEquals(id,p.getId());
 	};
-
-	@Test
-	public void getMenuDisplayPass(){
-		String x = name + " £" + price;
-		assertEquals(x, p.getMenuDisplay());
-		
-	}
 	
 	@Test
 	public void toStringIsCorrectPass() {
