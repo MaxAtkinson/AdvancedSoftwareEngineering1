@@ -28,9 +28,9 @@ import customExceptions.InvalidProductPriceException;
 public class Program extends JFrame {
 
 	//Instance Variables
-	static String productsFileName = "Products.csv";
-	static String ordersFileName = "Orders.csv";
-	static FileManagerIO f;
+	private static String productsFileName = "Products.csv";
+	private static String ordersFileName = "Orders.csv";
+	private static FileManagerIO f;
 	//ArrayList<Product> basketOrders = new ArrayList<Product>();
 	private static String currentSetSelection;
 	private static Product curentListSelection;
@@ -100,7 +100,7 @@ public class Program extends JFrame {
 		// enforcing single item selection
 		menuTree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
 
-		// Adding Tree Selection listener
+		// adding Tree Selection listener
 		menuTree.addTreeSelectionListener(new TreeSelectionListener() {
 			public void valueChanged(TreeSelectionEvent e) {
 				DefaultMutableTreeNode node = (DefaultMutableTreeNode) menuTree.getLastSelectedPathComponent();
@@ -133,7 +133,7 @@ public class Program extends JFrame {
 		// enforcing single item selection
 		orderList.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
-		// Adding List Selection listener
+		// adding List Selection listener
 		orderList.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent e) {
 
